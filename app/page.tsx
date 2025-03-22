@@ -30,7 +30,7 @@ export default function Home() {
             <TypingAnimation phrases={["👋 Bonjour, I'm Reda.", "🧑‍💻 I'm a Software Engineer.", "🎮 I'm a Gamer.", "🤖 AI enthusiast.", "🏃 I'm a runner."]} />
           </h1>
           <h1 className="text-2xl font-bold mb-4 border-b-2 border-green-500 pb-2 inline-block">Reda Boutayeb</h1>
-          <p className="mb-4">Senior at Worcester Polytechnic Institute studying Computer Science and Data Science. I can run 5 kilometers in 21 minutes. Twitch Partner.</p>
+          <p className="mb-4">Incoming Master's student at University of Southern California with a focus on AI. Senior at Worcester Polytechnic Institute studying Computer Science and Data Science. I can run 5 kilometers in 21 minutes. Twitch Partner.</p>
         </div>
         <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-gray-200 shrink-0">
           <Image
