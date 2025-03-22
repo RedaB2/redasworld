@@ -53,7 +53,7 @@ export default function Projects() {
         </Link>
 
         {/* Project 2 */}
-        <Link href="https://github.com/RedaB2/brigham-and-womens-hospital">
+        <Link href="https://github.com/RedaB2/BrighamWomenKiosk">
         <div className="flex flex-col items-center">
           <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
             <Image
