@@ -71,7 +71,7 @@ export default function Home() {
               <h3 className="text-lg font-bold">CollegeROI</h3>
               <p className="text-sky-700 text-sm">Software Engineer 🧑‍💻</p>
               <p className="mt-2 text-sm">
-                Maintaining backend functionality with updated database schemas. Optimized search engine algorithm enhancing performance by 65% using rapid querying of extensive datasets. Implemented algorithm to categorize student applications into safety, target, and reach schools using different metrics. Helping future high school seniors by giving them everything to make an informed decision! 📈
+                I'm overseeing all backend services of the CollegeROI platform. Recently, I helped by building a new search engine that helps go through colleges with specific criteries (distance, cost, size, and more). Very fun work and it's helping students out there making one of the most important decision of their lives: college. ✌️ 
               </p>
               <p className="mt-2 text-xs">February 2025</p>
             </div>
@@ -92,10 +92,9 @@ export default function Home() {
               <h3 className="text-lg font-bold">Capgemini</h3>
               <p className="text-sky-700 text-sm">Software Engineering Intern 🧑‍💻</p>
               <p className="mt-2 text-sm">
-              Collaborated closely with a leading multinational mass media and entertainment conglomerate to develop and document REST APIs 
-              using Java Spring Boot, deploying functions with AWS Lambda and API Gateway, resulting in a 35% improvement in connectivity with 
-              legacy Java interfaces. Enhanced scalable cloud solutions deployed to AWS by employing technologies such as Spring Web, Lombok, 
-              and Maven, leading to a 20% reduction in deployment times.
+              Collaborated closely with a leading global mass media and entertainment conglomerate 
+              to develop a service that simplifies licensing and rights management for theaters seeking to screen films.
+              Gained a lot of exposure to new technologies such as SpringBoot and RestAPIs. On top of that, I learned about the media industry and how things work in Holywood! 🎥
               </p>
               <p className="mt-2 text-xs">June 2024 - August 2024</p>
             </div>
@@ -116,7 +115,11 @@ export default function Home() {
               <h3 className="text-lg font-bold">Schneider Electric</h3>
               <p className="text-sky-700 text-sm">Cybersecurity Automation Engineer 🧑‍💻</p>
               <p className="mt-2 text-sm">
-                Developed Python automation scripts to analyze company asset data for prohibited software and implemented an automated email notification system to alert laptop owners. Streamlined prohibited software detection process by 70% and reduced manual work by 80%. 🔒
+                Oversaw two different projects simultaneously. The first one was an internal tool to sort through lists of 
+                corporate assets and detect prohibited software. After that, I improved the tool to send email notifications
+                to users with prohibited software with instructions on how to delete the software. 🔒
+                The second project was an internal tool to help the next wave of interns by assigning a mentor. 
+                I engineered a fun questionnaire and using a point system and a matching algorithm, interns would be matched and pairs would be created. 👩‍❤️‍👨
               </p>
               <p className="mt-2 text-xs">June 2023 - March 2025</p>
             </div>
