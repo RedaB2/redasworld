@@ -21,7 +21,7 @@ export default function Projects() {
           <Link href="/projects" className="hover:underline">
             Projects
           </Link>
-          <Link href="https://drive.google.com/file/d/1JvJn5QFD4ZESB7uBw3Sus51JHwqkhKnl/view?usp=sharing" className="hover:underline">
+          <Link href="https://drive.google.com/file/d/10aBQyCJI3MMTeXpNb5EkPX7No3z1Oyuy/view?usp=sharing" className="hover:underline">
             Resume
           </Link>
         </nav>
