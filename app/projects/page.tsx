@@ -97,11 +97,9 @@ export default function Projects() {
           <p className="text-xs text-gray-500">Is a 4 year old child smarter than ChatGPT?</p>
         </div>
         </Link>
-      </div>
-      {/* Project 5 - Centered below grid */}
-      <div className="flex justify-center mb-8">
+        {/* Project 5 */}
         <Link href="https://github.com/RedaB2/AlphaLasker">
-          <div className="flex flex-col items-center max-w-md">
+          <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
               <HoverVideo />
             </div>
@@ -110,6 +108,27 @@ export default function Projects() {
               A Lasker Morris player powered by Gemini API. Smart decision making, fast response time and fallback on hardcoded algorithm if API fails.
             </p>
             <p className="text-xs text-gray-500">Can you beat it at Lasker Morris?</p>
+          </div>
+        </Link>
+        {/* Project 6 - Template */}
+        <Link href="https://github.com/RedaB2/systemloggerv1">
+          <div className="flex flex-col items-center">
+            <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
+              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+              <Image
+              src="/systemloggerv1.png?height=200&width=400"
+              alt="Kiosk Demo"
+              width={100}
+              height={50}
+              className="w-full h-48 object-contain"
+            />
+              </div>
+            </div>
+            <h2 className="text-xl font-bold mt-3 mb-1">SystemLoggerV1</h2>
+            <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
+              Lightweight C++ system logger for embedded Linux devices 💡
+            </p>
+            <p className="text-xs text-gray-500">Great way to learn C++ and Linux</p>
           </div>
         </Link>
       </div>
