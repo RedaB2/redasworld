@@ -121,7 +121,7 @@ export default function Home() {
                 The second project was an internal tool to help the next wave of interns by assigning a mentor. 
                 I engineered a fun questionnaire and using a point system and a matching algorithm, interns would be matched and pairs would be created. 👩‍❤️‍👨
               </p>
-              <p className="mt-2 text-xs">June 2023 - March 2025</p>
+              <p className="mt-2 text-xs">June 2023 - June 2024</p>
             </div>
           </div>
         </div>
