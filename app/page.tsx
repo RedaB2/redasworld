@@ -69,7 +69,7 @@ export default function Home() {
             </div>
             <div className="bg-sky-100 text-sky-900 p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <h3 className="text-lg font-bold">CollegeROI</h3>
-              <p className="text-sky-700 text-sm">Software Engineer 🧑‍💻</p>
+              <p className="text-sky-700 text-sm">Software Engineer Intern 🧑‍💻</p>
               <p className="mt-2 text-sm">
                 I'm overseeing all backend services of the CollegeROI platform. Recently, I helped by building a new search engine that helps go through colleges with specific criteries (distance, cost, size, and more). Very fun work and it's helping students out there making one of the most important decision of their lives: college. ✌️ 
               </p>
@@ -90,7 +90,7 @@ export default function Home() {
             </div>
             <div className="bg-sky-100 text-sky-900 p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <h3 className="text-lg font-bold">Capgemini</h3>
-              <p className="text-sky-700 text-sm">Software Engineering Intern 🧑‍💻</p>
+              <p className="text-sky-700 text-sm">Software Engineer Intern 🧑‍💻</p>
               <p className="mt-2 text-sm">
               Collaborated closely with a leading global mass media and entertainment conglomerate 
               to develop a service that simplifies licensing and rights management for theaters seeking to screen films.
@@ -113,7 +113,7 @@ export default function Home() {
             </div>
             <div className="bg-sky-100 text-sky-900 p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <h3 className="text-lg font-bold">Schneider Electric</h3>
-              <p className="text-sky-700 text-sm">Cybersecurity Automation Engineer 🧑‍💻</p>
+              <p className="text-sky-700 text-sm">Software Automation Intern 🧑‍💻</p>
               <p className="mt-2 text-sm">
                 Oversaw two different projects simultaneously. The first one was an internal tool to sort through lists of 
                 corporate assets and detect prohibited software. After that, I improved the tool to send email notifications
@@ -181,7 +181,7 @@ export default function Home() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 3/25/2025</p>
+      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 3/29/2025</p>
     </div>
   )
 }
