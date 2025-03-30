@@ -71,7 +71,8 @@ export default function Home() {
               <h3 className="text-lg font-bold">CollegeROI</h3>
               <p className="text-sky-700 text-sm">Software Engineer Intern 🧑‍💻</p>
               <p className="mt-2 text-sm">
-                I'm overseeing all backend services of the CollegeROI platform. Recently, I helped by building a new search engine that helps go through colleges with specific criteries (distance, cost, size, and more). Very fun work and it's helping students out there making one of the most important decision of their lives: college. ✌️ https://www.yourcollegeroi.com/
+                I'm overseeing all backend services of the CollegeROI platform. Recently, I helped by building a new search engine that helps go through colleges with specific criteries (distance, cost, size, and more). Very fun work and it's helping students out there making one of the most important decision of their lives: college. ✌️ <br></br>
+                <a href="https://www.yourcollegeroi.com/" className="text-blue-500 hover:underline">https://www.yourcollegeroi.com/</a>
               </p>
               <p className="mt-2 text-xs">February 2025</p>
             </div>
