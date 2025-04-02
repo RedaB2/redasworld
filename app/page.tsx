@@ -17,9 +17,9 @@ export default function Home() {
           <Link href="/projects" className="hover:underline">
             Projects
           </Link>
-          <Link href="https://drive.google.com/file/d/17wnLKtC-bjAZQllFZCmm1y5qYDUmPw5K/view?usp=sharing" className="hover:underline">
+          {/* <Link href="https://drive.google.com/file/d/17wnLKtC-bjAZQllFZCmm1y5qYDUmPw5K/view?usp=sharing" className="hover:underline">
             Resume
-          </Link>
+          </Link> */}
         </nav>
       </header>
 
