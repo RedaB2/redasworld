@@ -95,7 +95,7 @@ export default function Home() {
               <p className="mt-2 text-sm">
               Collaborated closely with a leading global mass media and entertainment conglomerate 
               to develop a service that simplifies licensing and rights management for theaters seeking to screen films.
-              Gained a lot of exposure to new technologies such as SpringBoot and RestAPIs. On top of that, I learned about the media industry and how things work in Holywood! 🎥
+              Gained a lot of exposure to new technologies such as SpringBoot and RestAPIs. On top of that, I learned about the media industry and how things work in Hollywood! 🎥
               </p>
               <p className="mt-2 text-xs">June 2024 - August 2024</p>
             </div>
