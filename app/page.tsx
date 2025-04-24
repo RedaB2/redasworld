@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Github, Linkedin, Mail } from "lucide-react"
+import { Github, Linkedin, Mail, Youtube } from "lucide-react"
 import { TypingAnimation } from "@/components/typing-animation"
 
 export default function Home() {
@@ -49,6 +49,32 @@ export default function Home() {
         <p className="text-sm mb-2">
           Hi, I'm Reda! I enjoy building software with a purpose. I'm not trying to change the world, but solve a couple problems. Coding isn't everything, I love sports (soccer, basketball, running, pickleball, and 100 more), video games (League of Legends, FIFA, Assassin's Creed, and 100 more) and spending time with my family.
         </p>
+      </section>
+
+      {/* Latest Video Highlight */}
+      <section className="mb-8 bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border-l-4 border-green-500" id="latest-video">
+        <div className="flex flex-col md:flex-row gap-4 items-center">
+          <div className="flex-1">
+            <h2 className="text-xl font-bold mb-2">📹 REDA 101 </h2>
+            <p className="mb-3 text-sm">I don't just sit at my desk, play video games and write some code. So, here it is, a glimpse into my life.</p>
+            <div className="flex items-center gap-2">
+              <Link href="https://www.youtube.com/watch?v=o26RSEnEgBs" className="flex items-center gap-1 bg-red-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-700 transition-all duration-300">
+                <Youtube size={16} />
+                Subscribe
+              </Link>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 aspect-video rounded-lg overflow-hidden shadow-lg">
+            <iframe 
+              className="w-full h-full" 
+              src="https://www.youtube.com/embed/o26RSEnEgBs" 
+              title="Latest YouTube video" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
       </section>
 
       {/* Work Experience */}
@@ -127,6 +153,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Latest Publications & Articles */}
       <section className="mb-6" id="projects">
