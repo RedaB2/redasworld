@@ -55,7 +55,7 @@ export default function Home() {
       <section className="mb-8 bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border-l-4 border-green-500" id="latest-video">
         <div className="flex flex-col md:flex-row gap-4 items-center">
           <div className="flex-1">
-            <h2 className="text-xl font-bold mb-2">📹 REDA 101 </h2>
+            <h2 className="text-xl font-bold mb-2">📹 hello <del>world</del> youtube</h2>
             <p className="mb-3 text-sm">I don't just sit at my desk, play video games and write some code. So, here it is, a glimpse into my life.</p>
             <div className="flex items-center gap-2">
               <Link href="https://www.youtube.com/watch?v=o26RSEnEgBs" className="flex items-center gap-1 bg-red-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-700 transition-all duration-300">
