@@ -97,7 +97,7 @@ export default function Thoughts() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 06/17/2025</p>
+      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 6/17/2025</p>
     </div>
   )
 }
