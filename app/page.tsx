@@ -33,7 +33,7 @@ export default function Home() {
             <TypingAnimation phrases={["👋 Bonjour, I'm Reda.", "🧑‍💻 I'm a Software Engineer.", "🎮 I'm a Gamer.", "🤖 AI enthusiast.", "🏃 I'm a runner."]} />
           </h1>
           <h1 className="text-2xl font-bold mb-4 border-b-2 border-green-500 pb-2 inline-block">Reda Boutayeb</h1>
-          <p className="mb-4">Incoming Master's student at University of Southern California with a focus on AI. Senior at Worcester Polytechnic Institute studying Computer Science and Data Science. I can run 5 kilometers in 21 minutes. Twitch Partner.</p>
+          <p className="mb-4">Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 21 minutes. Twitch Partner.</p>
         </div>
         <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-gray-200 shrink-0">
           <Image
@@ -85,6 +85,28 @@ export default function Home() {
         <h2 className="text-xl font-bold mb-3 border-b border-green-500 pb-1 inline-block">Work Experience</h2>
 
         <div className="relative border-l-2 border-gray-200 pl-6 ml-4">
+          {/* Capgemini Engineering */}
+          <div className="mb-6 relative">
+            <div className="absolute -left-10 w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-gray-200">
+              <Image
+                src="/capgeminilogo.png"
+                alt="Capgemini Engineering Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+              />
+            </div>
+            <div className="bg-sky-100 text-sky-900 p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <h3 className="text-lg font-bold">Capgemini Engineering</h3>
+              <p className="text-sky-700 text-sm">Software Engineer 🧑‍💻</p>
+              <p className="mt-2 text-sm">
+                Building AI Agents and full stack applications for Healthcare companies. Streamlining healthcare operations. Also, on the side, diving
+                into GPU programming with CUDA!! 🏥⚡
+              </p>
+              <p className="mt-2 text-xs">June 2025</p>
+            </div>
+          </div>
+
           {/* CROI 1 */}
           <div className="mb-6 relative">
             <div className="absolute -left-10 w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-gray-200">
