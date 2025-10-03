@@ -21,9 +21,6 @@ export default function Projects() {
           <Link href="/projects" className="hover:underline">
             Projects
           </Link>
-          <Link href="/thoughts" className="hover:underline">
-            Thoughts
-          </Link>
           {/* <Link href="https://drive.google.com/file/d/17wnLKtC-bjAZQllFZCmm1y5qYDUmPw5K/view?usp=sharing" className="hover:underline">
             Resume
           </Link> */}
@@ -158,7 +155,7 @@ export default function Projects() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 6/17/2025</p>
+      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 10/02/2025</p>
     </div>
   )
 } 

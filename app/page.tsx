@@ -17,9 +17,6 @@ export default function Home() {
           <Link href="/projects" className="hover:underline">
             Projects
           </Link>
-          <Link href="/thoughts" className="hover:underline">
-            Thoughts
-          </Link>
           {/* <Link href="https://drive.google.com/file/d/17wnLKtC-bjAZQllFZCmm1y5qYDUmPw5K/view?usp=sharing" className="hover:underline">
             Resume
           </Link> */}
@@ -184,6 +181,18 @@ export default function Home() {
       <section className="mb-6" id="projects">
         <h2 className="text-xl font-bold mb-3 border-b border-green-500 pb-1 inline-block">Latest Publications & Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <Link href="https://digital.wpi.edu/concern/student_works/v405sf79n?locale=en" className="block">
+            <div className="p-3 rounded-lg bg-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+              <Image
+                src="/peltongpt.png"
+                alt="Pelton turbine optimization paper thumbnail"
+                width={300}
+                height={150}
+                className="w-full h-32 object-cover rounded-lg mb-2"
+              />              <h3 className="font-medium text-sm">How I streamlined fluid mechanics research in Japan! 🇯🇵</h3>
+
+            </div>
+          </Link>
           <Link href="https://www.ansi.org/standards-news/all-news/2023/12/12-18-23-university-students-explore-ais-potential-impact-on-the-workforce" className="block">
             <div className="p-3 rounded-lg bg-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer">
               <Image
@@ -234,7 +243,7 @@ export default function Home() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 6/17/2025</p>
+      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 10/02/2025</p>
     </div>
   )
 }
