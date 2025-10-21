@@ -85,7 +85,7 @@ export default function Projects() {
         </div>
         </Link>
         {/* Project 4 */}
-        <Link href="https://github.com/RedaB2/final">
+        <Link href="https://redab2.github.io/final/">
         <div className="flex flex-col items-center">
           <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
             <ShapeOfAIVideo />
