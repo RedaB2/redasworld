@@ -51,6 +51,30 @@ export default function Home() {
         </p>
       </section>
 
+      {/* Hackathon Achievement Banner */}
+      <section className="mb-8 bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg border-l-4 border-blue-500">
+        <div className="flex flex-col md:flex-row gap-4 items-center">
+          <div className="flex-1">
+            <h2 className="text-xl font-bold mb-2">🏆 2nd Place - USCxLovable Hackathon</h2>
+            <p className="mb-3 text-sm">
+              Excited to share that our team secured 2nd place at the USCxLovable hackathon! 
+              We built an innovative solution that showcased the power of rapid prototyping and creative problem-solving.
+            </p>
+          </div>
+          <div className="w-full md:w-auto rounded-lg overflow-hidden shadow-lg">
+            <iframe 
+              src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7394497644485611522?compact=1" 
+              height="399" 
+              width="504" 
+              frameBorder="0" 
+              allowFullScreen 
+              title="USCxLovable Hackathon Achievement"
+              className="max-w-full"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
       {/* Latest Video Highlight */}
       <section className="mb-8 bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border-l-4 border-green-500" id="latest-video">
         <div className="flex flex-col md:flex-row gap-4 items-center">
