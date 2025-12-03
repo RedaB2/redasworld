@@ -94,7 +94,8 @@ export default function Home() {
           <div 
             style={{ 
               height: carouselHeight > 0 ? `${carouselHeight}px` : 'auto',
-              transition: 'height 0.3s ease-in-out'
+              transition: 'height 0.3s ease-in-out',
+              overflow: 'hidden'
             }}
           >
             <CarouselContent className="items-start">
