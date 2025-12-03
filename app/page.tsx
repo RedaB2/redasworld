@@ -1,9 +1,46 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Github, Linkedin, Mail, Youtube } from "lucide-react"
 import { TypingAnimation } from "@/components/typing-animation"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel"
+import { useEffect, useState } from "react"
 
 export default function Home() {
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+  const [carouselHeight, setCarouselHeight] = useState<number>(0)
+
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    const updateHeight = () => {
+      setCurrent(api.selectedScrollSnap())
+      const slideNodes = api.slideNodes()
+      const currentSlide = slideNodes[api.selectedScrollSnap()]
+      if (currentSlide) {
+        setCarouselHeight(currentSlide.offsetHeight)
+      }
+    }
+
+    // Set initial height
+    updateHeight()
+
+    // Update on slide change
+    api.on("select", updateHeight)
+
+    // Update on window resize
+    const handleResize = () => updateHeight()
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [api])
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-4">
       {/* Header */}
@@ -51,28 +88,72 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Hackathon Achievement Banner */}
-      <section className="mb-8 bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg border-l-4 border-blue-500">
-        <div className="flex flex-col md:flex-row gap-4 items-center">
-          <div className="flex-1">
-            <h2 className="text-xl font-bold mb-2">🏆 2nd Place - USCxLovable Hackathon</h2>
-            <p className="mb-3 text-sm">
-              Excited to share that our team secured 2nd place at the USCxLovable hackathon! 
-              We built an innovative solution that showcased the power of rapid prototyping and creative problem-solving.
-            </p>
+      {/* Achievements Carousel */}
+      <section className="mb-8">
+        <Carousel opts={{ loop: true }} setApi={setApi} className="w-full">
+          <div 
+            style={{ 
+              height: carouselHeight > 0 ? `${carouselHeight}px` : 'auto',
+              transition: 'height 0.3s ease-in-out'
+            }}
+          >
+            <CarouselContent className="items-start">
+            {/* Achievement 1: USCxLovable Hackathon */}
+            <CarouselItem>
+              <div className="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg border-l-4 border-blue-500 h-full">
+                <div className="flex flex-col md:flex-row gap-4 items-center">
+                  <div className="flex-1">
+                    <h2 className="text-xl font-bold mb-2">🏆 2nd Place - USCxLovable Hackathon</h2>
+                    <p className="mb-3 text-sm">
+                      Excited to share that our team secured 2nd place at the USCxLovable hackathon! 
+                      We built an innovative solution that showcased the power of rapid prototyping and creative problem-solving.
+                    </p>
+                  </div>
+                  <div className="w-full md:w-auto rounded-lg overflow-hidden shadow-lg">
+                    <iframe 
+                      src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7394497644485611522?compact=1" 
+                      height="399" 
+                      width="504" 
+                      frameBorder="0" 
+                      allowFullScreen 
+                      title="USCxLovable Hackathon Achievement"
+                      className="max-w-full"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </CarouselItem>
+
+            {/* Achievement 2: USC Class Project */}
+            <CarouselItem>
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border-l-4 border-green-500 h-full">
+                <div className="flex flex-col md:flex-row gap-4 items-center">
+                  <div className="flex-1">
+                    <h2 className="text-xl font-bold mb-2">🎓 Deep Learning @ USC 🤖</h2>
+                    <p className="mb-3 text-sm">
+                      Just finished one of the hardest classes at USC! Our project results outperformed the baseline from an established research project about birds. 
+                      Proud of us! 🤗
+                    </p>
+                  </div>
+                  <div className="w-full md:w-auto rounded-lg overflow-hidden shadow-lg">
+                    <iframe 
+                      src="https://www.linkedin.com/embed/feed/update/urn:li:share:7401518971881156608?collapsed=1" 
+                      height="634" 
+                      width="504" 
+                      frameBorder="0" 
+                      allowFullScreen 
+                      title="USC Class Project Achievement"
+                      className="max-w-full"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </CarouselItem>
+          </CarouselContent>
           </div>
-          <div className="w-full md:w-auto rounded-lg overflow-hidden shadow-lg">
-            <iframe 
-              src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7394497644485611522?compact=1" 
-              height="399" 
-              width="504" 
-              frameBorder="0" 
-              allowFullScreen 
-              title="USCxLovable Hackathon Achievement"
-              className="max-w-full"
-            ></iframe>
-          </div>
-        </div>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </section>
 
       {/* Latest Video Highlight */}
@@ -267,7 +348,7 @@ export default function Home() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 10/02/2025</p>
+      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 12/02/2025</p>
     </div>
   )
 }
