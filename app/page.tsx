@@ -6,6 +6,7 @@ import { Github, Linkedin, Mail, Youtube } from "lucide-react"
 import { TypingAnimation } from "@/components/typing-animation"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
+import { COMMAND_CENTER_EVENT } from "@/components/command-center"
 
 export default function Home() {
   const [api, setApi] = useState<CarouselApi>()
@@ -42,7 +43,7 @@ export default function Home() {
   }, [api])
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-4">
+    <div className="max-w-3xl mx-auto px-4 py-4" id="top">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
@@ -79,9 +80,19 @@ export default function Home() {
           />
         </div>
       </div>
+      <div className="mb-6 flex flex-wrap items-center justify-center gap-3 text-xs text-gray-600">
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new Event(COMMAND_CENTER_EVENT))}
+          className="rounded-full border border-green-200 bg-green-50 px-3 py-1 font-medium text-green-700 transition-all duration-300 hover:border-green-300 hover:bg-green-100"
+        >
+          Command Center
+        </button>
+        <span className="rounded-full border border-gray-200 px-3 py-1">Press ⌘K / Ctrl+K</span>
+      </div>
 
       {/* About Me */}
-      <section className="mb-6">
+      <section className="mb-6" id="about">
         <h2 className="text-xl font-bold mb-2 border-b border-green-500 pb-1 inline-block">About Me</h2>
         <p className="text-sm mb-2">
           Hi, I'm Reda! I enjoy building software with a purpose. I'm not trying to change the world, but solve a couple problems. Coding isn't everything, I love sports (soccer, basketball, running, pickleball, and 100 more), video games (League of Legends, FIFA, Assassin's Creed, and 100 more) and spending time with my family.
@@ -89,7 +100,7 @@ export default function Home() {
       </section>
 
       {/* Achievements Carousel */}
-      <section className="mb-8">
+      <section className="mb-8" id="achievements">
         <Carousel opts={{ loop: true }} setApi={setApi} className="w-full">
           <div 
             style={{ 
@@ -184,7 +195,7 @@ export default function Home() {
       </section>
 
       {/* Work Experience */}
-      <section className="mb-6">
+      <section className="mb-6" id="work">
         <h2 className="text-xl font-bold mb-3 border-b border-green-500 pb-1 inline-block">Work Experience</h2>
 
         <div className="relative border-l-2 border-gray-200 pl-6 ml-4">
@@ -284,7 +295,8 @@ export default function Home() {
 
 
       {/* Latest Publications & Articles */}
-      <section className="mb-6" id="projects">
+      <section className="mb-6" id="publications">
+        <div id="projects" />
         <h2 className="text-xl font-bold mb-3 border-b border-green-500 pb-1 inline-block">Latest Publications & Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <Link href="https://digital.wpi.edu/concern/student_works/v405sf79n?locale=en" className="block">
