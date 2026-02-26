@@ -4,10 +4,13 @@ import { Github, Linkedin, Mail } from "lucide-react"
 import HoverVideo from "../components/hover-video"
 import ShapeOfAIVideo from "../components/shape-of-ai-video"
 import PeltonGPTVideo from "../components/pelton-gpt-video"
+import MusicPreviewRail from "@/components/music-preview-rail"
 
 export default function Projects() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-4">
+    <>
+      <MusicPreviewRail />
+      <div className="max-w-3xl mx-auto px-4 py-4">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
@@ -174,7 +177,8 @@ export default function Projects() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 12/03/2025</p>
-    </div>
+        <p className="text-center text-gray-400 text-sm mt-2">Last updated: 12/03/2025</p>
+      </div>
+    </>
   )
 }
