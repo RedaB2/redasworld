@@ -7,6 +7,7 @@ import { TypingAnimation } from "@/components/typing-animation"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
 import { COMMAND_CENTER_EVENT } from "@/components/command-center"
+import MusicPreviewRail from "@/components/music-preview-rail"
 
 export default function Home() {
   const [api, setApi] = useState<CarouselApi>()
@@ -43,7 +44,9 @@ export default function Home() {
   }, [api])
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-4" id="top">
+    <>
+      <MusicPreviewRail />
+      <div className="max-w-3xl mx-auto px-4 py-4" id="top">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
@@ -361,7 +364,8 @@ export default function Home() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-      <p className="text-center text-gray-400 text-sm mt-2">Last updated: 12/02/2025</p>
-    </div>
+        <p className="text-center text-gray-400 text-sm mt-2">Last updated: 12/02/2025</p>
+      </div>
+    </>
   )
 }
