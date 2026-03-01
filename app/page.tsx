@@ -7,6 +7,7 @@ import { TypingAnimation } from "@/components/typing-animation"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
 import { COMMAND_CENTER_EVENT } from "@/components/command-center"
+import { LAST_UPDATED } from "@/lib/site"
 import MusicPreviewRail from "@/components/music-preview-rail"
 
 export default function Home() {
@@ -302,6 +303,18 @@ export default function Home() {
         <div id="projects" />
         <h2 className="text-xl font-bold mb-3 border-b border-green-500 pb-1 inline-block">Latest Publications & Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <Link href="https://github.com/RedaB2/accelerometer-analysis-ruffs-behaviors" className="block">
+            <div className="p-3 rounded-lg bg-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+              <Image
+                src="/poster_presentation.jpeg?height=200&width=400"
+                alt="Ruff Behaviors Analysis"
+                width={300}
+                height={150}
+                className="w-full h-32 object-cover rounded-lg mb-2"
+              />
+              <h3 className="font-medium text-sm">Predicting Ruff Behaviors 🦃</h3>
+            </div>
+          </Link>
           <Link href="https://digital.wpi.edu/concern/student_works/v405sf79n?locale=en" className="block">
             <div className="p-3 rounded-lg bg-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer">
               <Image
@@ -364,7 +377,7 @@ export default function Home() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-        <p className="text-center text-gray-400 text-sm mt-2">Last updated: 12/02/2025</p>
+        <p className="text-center text-gray-400 text-sm mt-2">Last updated: {LAST_UPDATED}</p>
       </div>
     </>
   )

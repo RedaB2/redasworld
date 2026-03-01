@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Github, Linkedin, Mail } from "lucide-react"
+import { LAST_UPDATED } from "@/lib/site"
 import HoverVideo from "../components/hover-video"
 import ShapeOfAIVideo from "../components/shape-of-ai-video"
 import PeltonGPTVideo from "../components/pelton-gpt-video"
@@ -36,6 +37,28 @@ export default function Projects() {
     {/* Projects Grid */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10 mb-8">
         {/* Project 1 */}
+        <Link href="https://github.com/RedaB2/mandarin">
+          <div className="flex flex-col items-center">
+            <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
+              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+                <Image
+                  src="/mandarin-logo.png?height=200&width=400"
+                  alt="Mandarin logo"
+                  width={400}
+                  height={200}
+                  className="w-full h-48 object-contain"
+                />
+              </div>
+            </div>
+            <h2 className="text-xl font-bold mt-3 mb-1">Mandarin</h2>
+            <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
+              Context management tool for LLM discussion and chatting, built through open-source contributions.
+            </p>
+            <p className="text-xs text-gray-500">Keeps long AI conversations organized</p>
+          </div>
+        </Link>
+
+        {/* Project 2 */}
         <Link href="https://github.com/RedaB2/accelerometer-analysis-ruffs-behaviors">
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
@@ -54,7 +77,7 @@ export default function Projects() {
           </div>
         </Link>
 
-        {/* Project 2 */}
+        {/* Project 3 */}
         <Link href="https://github.com/RedaB2/whydateios">
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
@@ -74,7 +97,7 @@ export default function Projects() {
           </div>
         </Link>
 
-        {/* Project 3 */}
+        {/* Project 4 */}
         <Link href="https://github.com/RedaB2/BrighamWomenKiosk">
         <div className="flex flex-col items-center">
           <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
@@ -93,7 +116,7 @@ export default function Projects() {
           <p className="text-xs text-gray-500">2nd Place @ CS3733</p>
         </div>
         </Link>
-        {/* Project 4 */}
+        {/* Project 5 */}
         <Link href="https://github.com/RedaB2/PeltonGPT">
         <div className="flex flex-col items-center">
           <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
@@ -106,7 +129,7 @@ export default function Projects() {
           <p className="text-xs text-gray-500">Improved research efficiency by 45%</p>
         </div>
         </Link>
-        {/* Project 5 */}
+        {/* Project 6 */}
         <Link href="https://redab2.github.io/final/">
         <div className="flex flex-col items-center">
           <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
@@ -119,7 +142,7 @@ export default function Projects() {
           <p className="text-xs text-gray-500">Is a 4 year old child smarter than ChatGPT?</p>
         </div>
         </Link>
-        {/* Project 6 */}
+        {/* Project 7 */}
         <Link href="https://github.com/RedaB2/AlphaLasker">
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
@@ -132,7 +155,7 @@ export default function Projects() {
             <p className="text-xs text-gray-500">Can you beat it at Lasker Morris?</p>
           </div>
         </Link>
-        {/* Project 7 */}
+        {/* Project 8 */}
         <Link href="https://github.com/RedaB2/systemloggerv1">
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
@@ -177,7 +200,7 @@ export default function Projects() {
           <span className="sr-only">Email</span>
         </Link>
       </footer>
-        <p className="text-center text-gray-400 text-sm mt-2">Last updated: 12/03/2025</p>
+        <p className="text-center text-gray-400 text-sm mt-2">Last updated: {LAST_UPDATED}</p>
       </div>
     </>
   )
