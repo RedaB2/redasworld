@@ -2,13 +2,13 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Github, Linkedin, Mail, Youtube } from "lucide-react"
+import { Youtube } from "lucide-react"
 import { TypingAnimation } from "@/components/typing-animation"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
 import { COMMAND_CENTER_EVENT } from "@/components/command-center"
-import { LAST_UPDATED } from "@/lib/site"
 import MusicPreviewRail from "@/components/music-preview-rail"
+import SiteFooter from "@/components/site-footer"
 
 export default function Home() {
   const [api, setApi] = useState<CarouselApi>()
@@ -203,6 +203,27 @@ export default function Home() {
         <h2 className="text-xl font-bold mb-3 border-b border-green-500 pb-1 inline-block">Work Experience</h2>
 
         <div className="relative border-l-2 border-gray-200 pl-6 ml-4">
+          {/* Adobe */}
+          <div className="mb-6 relative">
+            <div className="absolute -left-10 w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-gray-200">
+              <Image
+                src="/adobe-logo.svg"
+                alt="Adobe Logo"
+                width={40}
+                height={40}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="bg-red-50 text-red-950 p-4 rounded-lg border border-red-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <h3 className="text-lg font-bold">Adobe</h3>
+              <p className="text-red-700 text-sm">Software Engineering Intern 🧑‍💻</p>
+              <p className="mt-2 text-sm">
+                Incoming on the DX Team for A2A, customer workflow and experience improvement.
+              </p>
+              <p className="mt-2 text-xs">Summer 2026</p>
+            </div>
+          </div>
+
           {/* Capgemini Engineering */}
           <div className="mb-6 relative">
             <div className="absolute -left-10 w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-gray-200">
@@ -221,7 +242,7 @@ export default function Home() {
                 Building AI Agents and full stack applications for Healthcare companies. Streamlining healthcare operations. Also, on the side, diving
                 into GPU programming with CUDA!! 🏥⚡
               </p>
-              <p className="mt-2 text-xs">June 2025</p>
+              <p className="mt-2 text-xs">June 2025 - April 2026</p>
             </div>
           </div>
 
@@ -243,7 +264,7 @@ export default function Home() {
                 I'm overseeing all backend services of the CollegeROI platform. Recently, I helped by building a new search engine that helps go through colleges with specific criteries (distance, cost, size, and more). Very fun work and it's helping students out there making one of the most important decision of their lives: college. ✌️ <br></br>
                 <a href="https://www.yourcollegeroi.com/" className="text-blue-500 hover:underline">https://www.yourcollegeroi.com/</a>
               </p>
-              <p className="mt-2 text-xs">February 2025</p>
+              <p className="mt-2 text-xs">February 2025 - June 2025</p>
             </div>
           </div>
 
@@ -354,30 +375,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="flex justify-center gap-4 pt-4 border-t border-gray-200">
-        <Link
-          href="https://github.com/RedaB2"
-          className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110"
-        >
-          <Github size={20} />
-          <span className="sr-only">GitHub</span>
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/redabtb/"
-          className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110"
-        >
-          <Linkedin size={20} />
-          <span className="sr-only">LinkedIn</span>
-        </Link>
-        <Link
-          href="mailto:boutayeb.reda@icloud.com"
-          className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110"
-        >
-          <Mail size={20} />
-          <span className="sr-only">Email</span>
-        </Link>
-      </footer>
-        <p className="text-center text-gray-400 text-sm mt-2">Last updated: {LAST_UPDATED}</p>
+      <SiteFooter />
       </div>
     </>
   )

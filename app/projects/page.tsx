@@ -1,11 +1,63 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Github, Linkedin, Mail } from "lucide-react"
-import { LAST_UPDATED } from "@/lib/site"
+import { PROJECTS, type Project } from "@/lib/projects"
 import HoverVideo from "../components/hover-video"
 import ShapeOfAIVideo from "../components/shape-of-ai-video"
 import PeltonGPTVideo from "../components/pelton-gpt-video"
 import MusicPreviewRail from "@/components/music-preview-rail"
+import SiteFooter from "@/components/site-footer"
+
+function ProjectMedia({ project }: { project: Project }) {
+  const { media } = project
+
+  if (media.type === "video") {
+    if (media.video === "pelton-gpt") {
+      return <PeltonGPTVideo />
+    }
+
+    if (media.video === "shape-of-ai") {
+      return <ShapeOfAIVideo />
+    }
+
+    return <HoverVideo />
+  }
+
+  const imageFitClass = media.fit === "contain" ? "object-contain" : "object-cover"
+  const image = (
+    <Image
+      src={media.src}
+      alt={media.alt}
+      width={400}
+      height={200}
+      className={`w-full h-48 ${imageFitClass}`}
+    />
+  )
+
+  if (media.framed) {
+    return <div className="w-full h-48 bg-gray-100 flex items-center justify-center">{image}</div>
+  }
+
+  return image
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <Link href={project.href}>
+      <div className="flex flex-col items-center">
+        <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
+          <ProjectMedia project={project} />
+        </div>
+        <h2 className="text-xl font-bold mt-3 mb-1">{project.title}</h2>
+        <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
+          {project.description}
+        </p>
+        {project.detail ? (
+          <p className="text-xs text-gray-500">{project.detail}</p>
+        ) : null}
+      </div>
+    </Link>
+  )
+}
 
 export default function Projects() {
   return (
@@ -36,171 +88,11 @@ export default function Projects() {
       </div>
     {/* Projects Grid */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10 mb-8">
-        {/* Project 1 */}
-        <Link href="https://github.com/RedaB2/mandarin">
-          <div className="flex flex-col items-center">
-            <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
-              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                <Image
-                  src="/mandarin-logo.png?height=200&width=400"
-                  alt="Mandarin logo"
-                  width={400}
-                  height={200}
-                  className="w-full h-48 object-contain"
-                />
-              </div>
-            </div>
-            <h2 className="text-xl font-bold mt-3 mb-1">Mandarin</h2>
-            <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
-              Context management tool for LLM discussion and chatting, built through open-source contributions.
-            </p>
-            <p className="text-xs text-gray-500">Keeps long AI conversations organized</p>
-          </div>
-        </Link>
-
-        {/* Project 2 */}
-        <Link href="https://github.com/RedaB2/accelerometer-analysis-ruffs-behaviors">
-          <div className="flex flex-col items-center">
-            <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
-              <Image
-                src="/poster_presentation.jpeg?height=200&width=400"
-                alt="Ruff Behaviors Analysis"
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-            </div>
-            <h2 className="text-xl font-bold mt-3 mb-1">Predicting Ruff Behaviors 🦃</h2>
-            <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
-              Deep Learning class survived & our project outperformed published research 🤗
-            </p>
-          </div>
-        </Link>
-
-        {/* Project 3 */}
-        <Link href="https://github.com/RedaB2/whydateios">
-          <div className="flex flex-col items-center">
-            <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
-              <Image
-                src="/whydate.png?height=200&width=400"
-                alt="whydatepj1"
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-            </div>
-            <h2 className="text-xl font-bold mt-3 mb-1">WhyDate?</h2>
-            <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
-              Fun & original iOS dating app created for students at WPI.
-            </p>
-            <p className="text-xs text-gray-500">40+ Testflight downloads (mostly friends & family 💀)</p>
-          </div>
-        </Link>
-
-        {/* Project 4 */}
-        <Link href="https://github.com/RedaB2/BrighamWomenKiosk">
-        <div className="flex flex-col items-center">
-          <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
-            <Image
-              src="/kioskdemo.png?height=200&width=400"
-              alt="Kiosk Demo"
-              width={400}
-              height={200}
-              className="w-full h-48 object-cover"
-            />
-          </div>
-          <h2 className="text-xl font-bold mt-3 mb-1">Brigham and Women's Hospital</h2>
-          <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
-            Web app to be used by patients & staff at Brigham and Women's Hospital. Packed with cool features like pathfinding in the hospital and flower ordering.
-          </p>
-          <p className="text-xs text-gray-500">2nd Place @ CS3733</p>
-        </div>
-        </Link>
-        {/* Project 5 */}
-        <Link href="https://github.com/RedaB2/PeltonGPT">
-        <div className="flex flex-col items-center">
-          <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
-            <PeltonGPTVideo />
-          </div>
-          <h2 className="text-xl font-bold mt-3 mb-1">PeltonGPT</h2>
-          <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
-            LLM powered research assistant for Professor Ono's research lab on fluid dynamics at Shibaura Institute of Technology.
-          </p>
-          <p className="text-xs text-gray-500">Improved research efficiency by 45%</p>
-        </div>
-        </Link>
-        {/* Project 6 */}
-        <Link href="https://redab2.github.io/final/">
-        <div className="flex flex-col items-center">
-          <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
-            <ShapeOfAIVideo />
-          </div>
-          <h2 className="text-xl font-bold mt-3 mb-1">Shape of AI</h2>
-          <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
-            Web app to help visualize AI models with human knowledge. Inspired by Yann LeCun's talk at the Summit 2025.
-          </p>
-          <p className="text-xs text-gray-500">Is a 4 year old child smarter than ChatGPT?</p>
-        </div>
-        </Link>
-        {/* Project 7 */}
-        <Link href="https://github.com/RedaB2/AlphaLasker">
-          <div className="flex flex-col items-center">
-            <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
-              <HoverVideo />
-            </div>
-            <h2 className="text-xl font-bold mt-3 mb-1">AlphaLasker</h2>
-            <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
-              A Lasker Morris player powered by Gemini API. Smart decision making, fast response time and fallback on hardcoded algorithm if API fails.
-            </p>
-            <p className="text-xs text-gray-500">Can you beat it at Lasker Morris?</p>
-          </div>
-        </Link>
-        {/* Project 8 */}
-        <Link href="https://github.com/RedaB2/systemloggerv1">
-          <div className="flex flex-col items-center">
-            <div className="overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full">
-              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-              <Image
-              src="/systemloggerv1.png?height=200&width=400"
-              alt="Kiosk Demo"
-              width={100}
-              height={50}
-              className="w-full h-48 object-contain"
-            />
-              </div>
-            </div>
-            <h2 className="text-xl font-bold mt-3 mb-1">SystemLoggerV1</h2>
-            <p className="text-sm text-gray-600 text-center mb-1 max-w-xs">
-              Lightweight C++ system logger for embedded Linux devices 💡
-            </p>
-            <p className="text-xs text-gray-500">Great way to learn C++ and Linux</p>
-          </div>
-        </Link>
+        {PROJECTS.map((project) => (
+          <ProjectCard key={project.href} project={project} />
+        ))}
       </div>
-      <footer className="flex justify-center gap-4 pt-4 border-t border-gray-200">
-        <Link
-          href="https://github.com/RedaB2"
-          className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110"
-        >
-          <Github size={20} />
-          <span className="sr-only">GitHub</span>
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/redabtb/"
-          className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110"
-        >
-          <Linkedin size={20} />
-          <span className="sr-only">LinkedIn</span>
-        </Link>
-        <Link
-          href="mailto:boutayeb.reda@icloud.com"
-          className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110"
-        >
-          <Mail size={20} />
-          <span className="sr-only">Email</span>
-        </Link>
-      </footer>
-        <p className="text-center text-gray-400 text-sm mt-2">Last updated: {LAST_UPDATED}</p>
+      <SiteFooter />
       </div>
     </>
   )
