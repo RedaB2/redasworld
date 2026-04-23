@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Adobe logo">
+  <rect width="512" height="512" fill="#f40000"/>
+  <g fill="#ffffff">
+    <path d="M147 126h91L147 351z"/>
+    <path d="M365 126h-91l91 225z"/>
+    <path d="M256 202l61 149h-48l-16-43h-42z"/>
+    <text
+      x="256"
+      y="424"
+      text-anchor="middle"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="74"
+      font-weight="700"
+      letter-spacing="2"
+    >
+      Adobe
+    </text>
+  </g>
+</svg>

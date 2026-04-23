@@ -24,6 +24,7 @@ import {
   Sparkles,
   Video,
 } from "lucide-react"
+import { PROJECTS } from "@/lib/projects"
 
 const COMMAND_CENTER_EVENT = "command-center:open"
 
@@ -39,36 +40,10 @@ type ExternalLink = {
   icon?: ReactNode
 }
 
-const PROJECT_LINKS: ExternalLink[] = [
-  {
-    label: "Predicting Ruff Behaviors",
-    href: "https://github.com/RedaB2/accelerometer-analysis-ruffs-behaviors",
-  },
-  {
-    label: "WhyDate?",
-    href: "https://github.com/RedaB2/whydateios",
-  },
-  {
-    label: "Brigham and Women's Hospital",
-    href: "https://github.com/RedaB2/BrighamWomenKiosk",
-  },
-  {
-    label: "PeltonGPT",
-    href: "https://github.com/RedaB2/PeltonGPT",
-  },
-  {
-    label: "Shape of AI",
-    href: "https://redab2.github.io/final/",
-  },
-  {
-    label: "AlphaLasker",
-    href: "https://github.com/RedaB2/AlphaLasker",
-  },
-  {
-    label: "SystemLoggerV1",
-    href: "https://github.com/RedaB2/systemloggerv1",
-  },
-]
+const PROJECT_LINKS: ExternalLink[] = PROJECTS.map((project) => ({
+  label: project.title,
+  href: project.href,
+}))
 
 export default function CommandCenter() {
   const router = useRouter()
