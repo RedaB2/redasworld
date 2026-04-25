@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import { COMMAND_CENTER_EVENT } from "@/components/command-center"
 import MusicPreviewRail from "@/components/music-preview-rail"
 import SiteFooter from "@/components/site-footer"
+import StravaRunningRail, { StravaRunningInline } from "@/components/strava-running-rail"
 
 export default function Home() {
   const [api, setApi] = useState<CarouselApi>()
@@ -47,6 +48,7 @@ export default function Home() {
   return (
     <>
       <MusicPreviewRail />
+      <StravaRunningRail />
       <div className="max-w-3xl mx-auto px-4 py-4" id="top">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
@@ -94,6 +96,7 @@ export default function Home() {
         </button>
         <span className="rounded-full border border-gray-200 px-3 py-1">Press ⌘K / Ctrl+K</span>
       </div>
+      <StravaRunningInline />
 
       {/* About Me */}
       <section className="mb-6" id="about">

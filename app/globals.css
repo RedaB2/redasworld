@@ -75,3 +75,26 @@
   }
 }
 
+@layer utilities {
+  @keyframes strava-orbit {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .strava-orbit {
+    animation: strava-orbit 18s linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .strava-follow-card:hover .strava-orbit,
+  .strava-follow-card:focus-visible .strava-orbit {
+    animation-duration: 7s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .strava-orbit {
+      animation: none;
+    }
+  }
+}
