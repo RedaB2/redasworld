@@ -6,6 +6,7 @@ import ShapeOfAIVideo from "../components/shape-of-ai-video"
 import PeltonGPTVideo from "../components/pelton-gpt-video"
 import MusicPreviewRail from "@/components/music-preview-rail"
 import SiteFooter from "@/components/site-footer"
+import StravaRunningRail from "@/components/strava-running-rail"
 
 function ProjectMedia({ project }: { project: Project }) {
   const { media } = project
@@ -63,6 +64,7 @@ export default function Projects() {
   return (
     <>
       <MusicPreviewRail />
+      <StravaRunningRail />
       <div className="max-w-3xl mx-auto px-4 py-4">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
