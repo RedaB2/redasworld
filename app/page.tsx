@@ -117,7 +117,33 @@ export default function Home() {
             }}
           >
             <CarouselContent className="items-start">
-            {/* Achievement 1: USCxLovable Hackathon */}
+            {/* Achievement 1: Adobe SWE Internship */}
+            <CarouselItem>
+              <div className="bg-gradient-to-r from-red-50 to-blue-50 p-4 rounded-lg border-l-4 border-red-500 h-full">
+                <div className="flex flex-col md:flex-row gap-4 items-center">
+                  <div className="flex-1">
+                    <h2 className="text-xl font-bold mb-2">summer 2026 ☀️</h2>
+                    <p className="mb-3 text-sm">
+                      Spending the summer at Adobe, building things I care about, learning from really smart people,
+                      and enjoying life!
+                    </p>
+                  </div>
+                  <div className="w-full md:w-auto rounded-lg overflow-hidden shadow-lg">
+                    <iframe
+                      src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7460358217160884226?collapsed=1"
+                      height="634"
+                      width="504"
+                      frameBorder="0"
+                      allowFullScreen
+                      title="Adobe Software Engineering Internship LinkedIn Post"
+                      className="max-w-full"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </CarouselItem>
+
+            {/* Achievement 2: USCxLovable Hackathon */}
             <CarouselItem>
               <div className="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg border-l-4 border-blue-500 h-full">
                 <div className="flex flex-col md:flex-row gap-4 items-center">
@@ -143,7 +169,7 @@ export default function Home() {
               </div>
             </CarouselItem>
 
-            {/* Achievement 2: USC Class Project */}
+            {/* Achievement 3: USC Class Project */}
             <CarouselItem>
               <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border-l-4 border-green-500 h-full">
                 <div className="flex flex-col md:flex-row gap-4 items-center">
