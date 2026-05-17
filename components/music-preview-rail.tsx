@@ -23,3 +23,18 @@ export default function MusicPreviewRail() {
     </aside>
   )
 }
+
+export function MusicPreviewInline({ className }: { className?: string }) {
+  return (
+    <div className={className}>
+      <MusicPreviewPlayer
+        title="let u down"
+        artist="Reda B"
+        audioSrc={PREVIEW_AUDIO_PATH}
+        spotifyUrl={SPOTIFY_TRACK_URL}
+        coverImage={ALBUM_COVER_PATH}
+        className="mx-auto max-w-sm rounded-xl"
+      />
+    </div>
+  )
+}
