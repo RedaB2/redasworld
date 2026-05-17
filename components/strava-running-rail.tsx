@@ -27,9 +27,54 @@ export default function StravaRunningRail() {
 
 export function StravaRunningInline({ className }: { className?: string }) {
   return (
-    <div className={cn("mb-6 flex justify-center xl:hidden", className)}>
-      <StravaFollowCard className="w-full max-w-[22rem]" />
+    <div className={cn("mb-6 xl:hidden", className)}>
+      <StravaCompactCard className="sm:hidden" />
+      <div className="hidden justify-center sm:flex">
+        <StravaFollowCard className="w-full max-w-[22rem]" />
+      </div>
     </div>
+  )
+}
+
+function StravaCompactCard({ className }: { className?: string }) {
+  return (
+    <Link
+      href={STRAVA_PROFILE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Follow Reda on Strava"
+      className={cn(
+        "flex items-center gap-3 rounded-lg border border-[#fc4c02]/20 bg-white p-3 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fc4c02]/45",
+        className,
+      )}
+    >
+      <span className="relative block h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-[#fc4c02]/20 bg-orange-50">
+        <Image
+          src={STRAVA_PHOTO_PATH}
+          alt="Reda making a goofy face with rice"
+          fill
+          sizes="64px"
+          className="object-cover object-[56%_59%]"
+        />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="flex items-center gap-1 text-sm font-bold">
+          <StravaMark className="h-4 w-4 text-[#fc4c02]" />
+          Strava profile
+        </span>
+        <span className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
+          <TimerIcon className="h-3.5 w-3.5" />
+          5K in 21 min
+        </span>
+        <span className="mt-0.5 flex items-center gap-1 text-xs text-muted-foreground">
+          <ActivityIcon className="h-3.5 w-3.5" />
+          Runs, routes, repeats
+        </span>
+      </span>
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#fc4c02] text-white">
+        <QrCodeIcon className="h-4 w-4" />
+      </span>
+    </Link>
   )
 }
 
