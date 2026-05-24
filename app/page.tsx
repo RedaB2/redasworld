@@ -184,7 +184,7 @@ function MobilePortfolioApp() {
                 Reda Boutayeb
               </h2>
               <p className="text-[15px] leading-6 text-slate-800">
-                Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 21 minutes. Twitch Partner.
+                Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 23 minutes. Twitch Partner.
               </p>
             </div>
             <div className="relative mt-1 h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-gray-200">
@@ -419,7 +419,7 @@ function DesktopPortfolio() {
               <TypingAnimation phrases={["👋 Bonjour, I'm Reda.", "🧑‍💻 I'm a Software Engineer.", "🎮 I'm a Gamer.", "🤖 AI enthusiast.", "🏃 I'm a runner."]} />
             </h1>
             <h1 className="mb-4 inline-block border-b-2 border-green-500 pb-2 text-2xl font-bold">Reda Boutayeb</h1>
-            <p className="mb-4">Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 21 minutes. Twitch Partner.</p>
+            <p className="mb-4">Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 23 minutes. Twitch Partner.</p>
           </div>
           <div className="h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-gray-200">
             <Image
