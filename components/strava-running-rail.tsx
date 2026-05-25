@@ -64,7 +64,7 @@ function StravaCompactCard({ className }: { className?: string }) {
         </span>
         <span className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
           <TimerIcon className="h-3.5 w-3.5" />
-          5K in 21 min
+          5K in 23 min
         </span>
         <span className="mt-0.5 flex items-center gap-1 text-xs text-muted-foreground">
           <ActivityIcon className="h-3.5 w-3.5" />
@@ -152,7 +152,7 @@ function StravaFollowCard({ className }: { className?: string }) {
           </span>
           <span className="mt-1 flex items-center gap-1 text-[11px] text-muted-foreground">
             <TimerIcon className="h-3 w-3" />
-            5K in 21 min
+            5K in 23 min
           </span>
           <span className="mt-0.5 flex items-center gap-1 text-[11px] text-muted-foreground">
             <ActivityIcon className="h-3 w-3" />
