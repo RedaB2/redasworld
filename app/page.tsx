@@ -592,7 +592,9 @@ function DesktopPortfolio() {
                 <h3 className="text-lg font-bold">Adobe</h3>
                 <p className="text-sm text-red-700">Software Engineering Intern 🧑‍💻</p>
                 <p className="mt-2 text-sm">
-                  Incoming on the DX Team for A2A, customer workflow and experience improvement.
+                  Working on Adobe Experience Platform with the Adobe Real-Time Customer Data Platform
+                  (RTCDP) Real-Time Customer Profile team, helping power the profile layer behind those
+                  "wait, how did this site know me?" personalized ads.
                 </p>
                 <p className="mt-2 text-xs">Summer 2026</p>
               </div>
