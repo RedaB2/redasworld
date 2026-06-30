@@ -592,7 +592,7 @@ function DesktopPortfolio() {
                 <h3 className="text-lg font-bold">Adobe</h3>
                 <p className="text-sm text-red-700">Software Engineering Intern 🧑‍💻</p>
                 <p className="mt-2 text-sm">
-                  Working on Adobe Experience Platform with the Adobe Real-Time Customer Data Platform
+                  Working on the Adobe Experience Platform with the Adobe Real-Time Customer Data Platform
                   (RTCDP) team, helping power the profile layer behind those
                   "wait, how did this site know me?" personalized ads.
                 </p>
