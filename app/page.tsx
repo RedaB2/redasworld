@@ -30,9 +30,15 @@ import MusicPreviewRail, { MusicPreviewInline } from "@/components/music-preview
 import SiteFooter from "@/components/site-footer"
 import StravaRunningRail, { StravaRunningInline } from "@/components/strava-running-rail"
 
-const ACHIEVEMENT_COUNT = 3
-
 const MOBILE_ACHIEVEMENTS = [
+  {
+    title: "12 weeks at Adobe 🎨",
+    label: "Adobe internship recap",
+    copy: "Wrapped up my Adobe internship after building multimodal content tooling, learning distributed systems at scale, and filing a patent along the way.",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7496600767122812929",
+    className: "border-violet-200 bg-gradient-to-br from-violet-50 to-red-50 text-violet-950",
+    ctaClassName: "text-violet-700",
+  },
   {
     title: "summer 2026 ☀️",
     label: "Adobe",
@@ -462,7 +468,34 @@ function DesktopPortfolio() {
               }}
             >
               <CarouselContent className="items-start">
-                {/* Achievement 1: Adobe SWE Internship */}
+                {/* Achievement 1: Adobe Internship Recap */}
+                <CarouselItem>
+                  <div className="h-full rounded-lg border-l-4 border-violet-500 bg-gradient-to-r from-violet-50 to-red-50 p-4">
+                    <div className="flex flex-col items-center gap-4 md:flex-row">
+                      <div className="flex-1">
+                        <h2 className="mb-2 text-xl font-bold">12 weeks at Adobe 🎨</h2>
+                        <p className="mb-3 text-sm">
+                          Wrapped up my internship with Adobe&apos;s Semantic Profile &amp; CDP team after building
+                          multimodal content tooling, learning distributed systems at scale, and filing a patent along
+                          the way.
+                        </p>
+                      </div>
+                      <div className="w-full overflow-hidden rounded-lg shadow-lg md:w-auto">
+                        <iframe
+                          src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7496600767122812929?collapsed=1"
+                          height="634"
+                          width="504"
+                          frameBorder="0"
+                          allowFullScreen
+                          title="Adobe Software Engineering Internship Recap LinkedIn Post"
+                          className="max-w-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+
+                {/* Achievement 2: Adobe SWE Internship */}
                 <CarouselItem>
                   <div className="h-full rounded-lg border-l-4 border-red-500 bg-gradient-to-r from-red-50 to-blue-50 p-4">
                     <div className="flex flex-col items-center gap-4 md:flex-row">
@@ -488,7 +521,7 @@ function DesktopPortfolio() {
                   </div>
                 </CarouselItem>
 
-                {/* Achievement 2: USCxLovable Hackathon */}
+                {/* Achievement 3: USCxLovable Hackathon */}
                 <CarouselItem>
                   <div className="h-full rounded-lg border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-green-50 p-4">
                     <div className="flex flex-col items-center gap-4 md:flex-row">
@@ -514,7 +547,7 @@ function DesktopPortfolio() {
                   </div>
                 </CarouselItem>
 
-                {/* Achievement 3: USC Class Project */}
+                {/* Achievement 4: USC Class Project */}
                 <CarouselItem>
                   <div className="h-full rounded-lg border-l-4 border-green-500 bg-gradient-to-r from-green-50 to-blue-50 p-4">
                     <div className="flex flex-col items-center gap-4 md:flex-row">
