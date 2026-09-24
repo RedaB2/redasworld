@@ -32,6 +32,14 @@ import StravaRunningRail, { StravaRunningInline } from "@/components/strava-runn
 
 const MOBILE_ACHIEVEMENTS = [
   {
+    title: "i met sam altman 🦦",
+    label: "GPT-6 community night",
+    copy: "Got invited to the GPT-6 community night in SF and met Sam Altman, Romain Huet (OpenAI's head of dev experience), Theo (yes, the one all over tech X), and a bunch of cool people from the dev community. Pretty surreal night.",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7506426141344305152",
+    className: "border-emerald-200 bg-gradient-to-br from-emerald-50 to-sky-50 text-emerald-950",
+    ctaClassName: "text-emerald-700",
+  },
+  {
     title: "12 weeks at Adobe 🎨",
     label: "Adobe internship recap",
     copy: "Wrapped up my Adobe internship after building multimodal content tooling, learning distributed systems at scale, and filing a patent along the way.",
@@ -190,7 +198,7 @@ function MobilePortfolioApp() {
                 Reda Boutayeb
               </h2>
               <p className="text-[15px] leading-6 text-slate-800">
-                Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 23 minutes. Twitch Partner.
+                Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 22 minutes. Twitch Partner.
               </p>
             </div>
             <div className="relative mt-1 h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-gray-200">
@@ -425,7 +433,7 @@ function DesktopPortfolio() {
               <TypingAnimation phrases={["👋 Bonjour, I'm Reda.", "🧑‍💻 I'm a Software Engineer.", "🎮 I'm a Gamer.", "🤖 AI enthusiast.", "🏃 I'm a runner."]} />
             </h1>
             <h1 className="mb-4 inline-block border-b-2 border-green-500 pb-2 text-2xl font-bold">Reda Boutayeb</h1>
-            <p className="mb-4">Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 23 minutes. Twitch Partner.</p>
+            <p className="mb-4">Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 22 minutes. Twitch Partner.</p>
           </div>
           <div className="h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-gray-200">
             <Image
@@ -468,7 +476,34 @@ function DesktopPortfolio() {
               }}
             >
               <CarouselContent className="items-start">
-                {/* Achievement 1: Adobe Internship Recap */}
+                {/* Achievement 1: GPT-6 Community Night */}
+                <CarouselItem>
+                  <div className="h-full rounded-lg border-l-4 border-emerald-500 bg-gradient-to-r from-emerald-50 to-sky-50 p-4">
+                    <div className="flex flex-col items-center gap-4 md:flex-row">
+                      <div className="flex-1">
+                        <h2 className="mb-2 text-xl font-bold">i met sam altman 🦦</h2>
+                        <p className="mb-3 text-sm">
+                          Got invited to the GPT-6 community night in SF and met Sam Altman, Romain Huet
+                          (OpenAI&apos;s head of dev experience), Theo (yes, the one all over tech X), and
+                          a bunch of cool people from the dev community. Pretty surreal night.
+                        </p>
+                      </div>
+                      <div className="w-full overflow-hidden rounded-lg shadow-lg md:w-auto">
+                        <iframe
+                          src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7506426098730082304?collapsed=1"
+                          height="770"
+                          width="504"
+                          frameBorder="0"
+                          allowFullScreen
+                          title="GPT-6 Community Night with Sam Altman LinkedIn Post"
+                          className="max-w-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+
+                {/* Achievement 2: Adobe Internship Recap */}
                 <CarouselItem>
                   <div className="h-full rounded-lg border-l-4 border-violet-500 bg-gradient-to-r from-violet-50 to-red-50 p-4">
                     <div className="flex flex-col items-center gap-4 md:flex-row">
@@ -495,7 +530,7 @@ function DesktopPortfolio() {
                   </div>
                 </CarouselItem>
 
-                {/* Achievement 2: Adobe SWE Internship */}
+                {/* Achievement 3: Adobe SWE Internship */}
                 <CarouselItem>
                   <div className="h-full rounded-lg border-l-4 border-red-500 bg-gradient-to-r from-red-50 to-blue-50 p-4">
                     <div className="flex flex-col items-center gap-4 md:flex-row">
@@ -521,7 +556,7 @@ function DesktopPortfolio() {
                   </div>
                 </CarouselItem>
 
-                {/* Achievement 3: USCxLovable Hackathon */}
+                {/* Achievement 4: USCxLovable Hackathon */}
                 <CarouselItem>
                   <div className="h-full rounded-lg border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-green-50 p-4">
                     <div className="flex flex-col items-center gap-4 md:flex-row">
@@ -547,7 +582,7 @@ function DesktopPortfolio() {
                   </div>
                 </CarouselItem>
 
-                {/* Achievement 4: USC Class Project */}
+                {/* Achievement 5: USC Class Project */}
                 <CarouselItem>
                   <div className="h-full rounded-lg border-l-4 border-green-500 bg-gradient-to-r from-green-50 to-blue-50 p-4">
                     <div className="flex flex-col items-center gap-4 md:flex-row">
