@@ -26,6 +26,7 @@ type MusicPreviewPlayerProps = {
   spotifyUrl: string
   coverImage?: string
   className?: string
+  variant?: "rail" | "inline"
 }
 
 export default function MusicPreviewPlayer({
@@ -35,6 +36,7 @@ export default function MusicPreviewPlayer({
   spotifyUrl,
   coverImage,
   className,
+  variant = "rail",
 }: MusicPreviewPlayerProps) {
   const song = useMemo<Song>(
     () => ({
@@ -65,6 +67,88 @@ export default function MusicPreviewPlayer({
     isPlayable,
     hasError,
   } = useMusicPlayer({ song })
+
+  if (variant === "inline") {
+    return (
+      <div
+        className={cn(
+          "pointer-events-auto flex w-full flex-col rounded-2xl border border-stone-200 bg-[#fffefa] p-4 text-slate-900 shadow-[0_2px_10px_rgba(15,23,42,0.03)]",
+          className,
+        )}
+      >
+        <div className="flex items-center gap-3">
+          {song.album.image ? (
+            <img
+              src={song.album.image}
+              alt={`${song.name} artwork`}
+              width={44}
+              height={44}
+              className="h-11 w-11 shrink-0 rounded-lg object-cover"
+            />
+          ) : (
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-stone-100">
+              <MusicIcon aria-hidden="true" className="h-5 w-5 text-stone-500" />
+            </div>
+          )}
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-semibold leading-5">{song.name}</p>
+            <p className="mt-0.5 truncate text-xs leading-5 text-stone-500">{song.artists.join(", ")}</p>
+          </div>
+          <Button
+            type="button"
+            size="icon"
+            className="h-11 w-11 shrink-0 rounded-full bg-green-800 text-white shadow-none hover:bg-green-900 focus-visible:ring-green-700 focus-visible:ring-offset-[#fffefa]"
+            onClick={togglePlayPause}
+            disabled={!isPlayable}
+            aria-label={isPlaying ? "Pause preview" : "Play preview"}
+          >
+            {isPlaying ? (
+              <PauseIcon aria-hidden="true" className="h-4 w-4" />
+            ) : (
+              <PlayIcon aria-hidden="true" className="ml-0.5 h-4 w-4" />
+            )}
+          </Button>
+        </div>
+
+        <div className="mt-2">
+          <Slider
+            aria-label="Music progress slider"
+            aria-valuetext={`${formattedCurrentTime} of ${formattedDuration}`}
+            value={[progressPercentage]}
+            max={100}
+            step={1}
+            onValueChange={handleSliderChange}
+            disabled={duration === 0}
+            className="h-11 [&>span:first-child]:h-1 [&>span:first-child]:bg-stone-200 [&>span:first-child>span]:bg-green-800 [&_[role=slider]]:h-3.5 [&_[role=slider]]:w-3.5 [&_[role=slider]]:border-green-800 [&_[role=slider]]:bg-[#fffefa] [&_[role=slider]]:focus-visible:ring-green-700"
+          />
+          <div className="-mt-1 flex items-center justify-between gap-2 text-[11px] leading-4 text-stone-500">
+            <span className="tabular-nums">{formattedCurrentTime}</span>
+            <span>Sneak preview</span>
+            <span className="tabular-nums">{formattedDuration}</span>
+          </div>
+        </div>
+
+        <div className="mt-auto pt-3">
+          <Button
+            asChild
+            variant="ghost"
+            className="h-11 w-full justify-between rounded-xl border border-stone-200 bg-stone-50/80 px-3 text-xs font-medium text-green-800 hover:bg-green-50 hover:text-green-900 focus-visible:ring-green-700"
+          >
+            <Link href={song.spotifyUrl} target="_blank" rel="noopener noreferrer">
+              Open in Spotify
+              <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
+            </Link>
+          </Button>
+        </div>
+
+        {hasError ? (
+          <p role="status" className="mt-3 text-xs leading-5 text-stone-500">Preview unavailable. Listen on Spotify.</p>
+        ) : null}
+
+        <audio ref={audioRef} src={song.audioSrc} preload="metadata" />
+      </div>
+    )
+  }
 
   return (
     <div

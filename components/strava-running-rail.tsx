@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ActivityIcon, QrCodeIcon, TimerIcon } from "lucide-react"
+import { ActivityIcon, ArrowUpRightIcon, QrCodeIcon, TimerIcon } from "lucide-react"
 import { useId } from "react"
 
 import { cn } from "@/lib/utils"
@@ -33,6 +33,37 @@ export function StravaRunningInline({ className }: { className?: string }) {
         <StravaFollowCard className="w-full max-w-[22rem]" />
       </div>
     </div>
+  )
+}
+
+export function StravaProfileTile() {
+  return (
+    <Link
+      href={STRAVA_PROFILE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Follow Reda on Strava (opens in a new tab)"
+      className="group/strava relative flex h-full flex-col rounded-2xl border border-stone-200 bg-[#fffefa] text-slate-900 shadow-sm transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-4 motion-reduce:transform-none"
+    >
+      <span aria-hidden="true" className="pointer-events-none absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 rotate-[5deg] rounded-sm border border-amber-200/55 bg-amber-100/75 shadow-sm" />
+      <span className="flex items-center justify-between rounded-t-2xl border-b border-stone-200/80 bg-orange-50/60 px-3 pb-2 pt-3">
+        <span className="flex items-center gap-1.5 font-mono text-[10px] text-stone-600">
+          <StravaMark className="h-3 w-3 text-[#fc4c02]" />
+          Strava
+        </span>
+        <ArrowUpRightIcon aria-hidden="true" className="h-3 w-3 text-stone-400" />
+      </span>
+      <span className="flex flex-1 flex-col px-3 pt-3">
+        <span className="flex flex-1 flex-wrap items-center gap-2">
+          <Image src={STRAVA_PHOTO_PATH} alt="" width={44} height={44} className="h-11 w-11 rounded-full border border-stone-200 object-cover object-[56%_59%]" />
+          <span className="text-[11px] leading-4 text-stone-600"><span className="block font-semibold text-slate-900">5K</span>22 min</span>
+        </span>
+        <span className="mt-3 flex min-h-11 items-center justify-between border-t border-stone-200/80 text-xs font-medium text-orange-800">
+          Follow my runs
+          <ArrowUpRightIcon aria-hidden="true" className="h-3.5 w-3.5" />
+        </span>
+      </span>
+    </Link>
   )
 }
 

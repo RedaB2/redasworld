@@ -26,9 +26,11 @@ import {
 } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
 import { COMMAND_CENTER_EVENT } from "@/components/command-center"
-import MusicPreviewRail, { MusicPreviewInline } from "@/components/music-preview-rail"
+import MusicPreviewRail from "@/components/music-preview-rail"
 import SiteFooter from "@/components/site-footer"
-import StravaRunningRail, { StravaRunningInline } from "@/components/strava-running-rail"
+import StravaRunningRail from "@/components/strava-running-rail"
+import { CodexProfilePlacement } from "@/components/codex-profile-card"
+import ProfileWidgetsInline from "@/components/profile-widgets-inline"
 
 const MOBILE_ACHIEVEMENTS = [
   {
@@ -131,7 +133,7 @@ const MOBILE_PUBLICATIONS = [
 
 const MOBILE_NAV: { href: string; label: string; icon: LucideIcon }[] = [
   { href: "#top", label: "Home", icon: HomeIcon },
-  { href: "#achievements", label: "Achievements", icon: TrophyIcon },
+  { href: "#achievements", label: "Updates", icon: TrophyIcon },
   { href: "#work", label: "Work", icon: BriefcaseIcon },
   { href: "#latest-video", label: "Video", icon: PlayCircleIcon },
 ]
@@ -140,7 +142,7 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState<boolean | null>(null)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 767px)")
+    const mediaQuery = window.matchMedia("(max-width: 1023px)")
     const updateViewport = () => setIsMobile(mediaQuery.matches)
 
     updateViewport()
@@ -160,7 +162,7 @@ function MobilePortfolioApp() {
   return (
     <main className="min-h-svh bg-[#f5f7f2] pb-28 text-slate-950" id="top">
       <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-[#f5f7f2]/90 px-4 py-3 backdrop-blur">
-        <div className="mx-auto flex max-w-md items-center justify-between">
+        <div className="mx-auto flex max-w-3xl items-center justify-between md:px-2">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-sm">
               <span className="text-xl">🦁</span>
@@ -170,7 +172,7 @@ function MobilePortfolioApp() {
           <div className="flex items-center gap-2">
             <Link
               href="/projects"
-              className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm"
+              className="flex min-h-11 items-center rounded-xl border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600"
             >
               Projects
             </Link>
@@ -178,7 +180,7 @@ function MobilePortfolioApp() {
               type="button"
               onClick={() => window.dispatchEvent(new Event(COMMAND_CENTER_EVENT))}
               aria-label="Open command center"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-950 text-white shadow-sm"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-950 text-white shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2"
             >
               <MenuIcon className="h-4 w-4" />
             </button>
@@ -186,51 +188,34 @@ function MobilePortfolioApp() {
         </div>
       </header>
 
-      <div className="mx-auto flex max-w-md flex-col gap-5 px-4 pt-4">
-        <section className="pt-1" aria-labelledby="mobile-intro-title">
-          <h1 className="mb-3 min-h-20 text-center text-3xl font-bold leading-tight">
-            <TypingAnimation phrases={["👋 Bonjour, I'm Reda.", "🧑‍💻 I'm a Software Engineer.", "🎮 I'm a Gamer.", "🤖 AI enthusiast.", "🏃 I'm a runner."]} />
-          </h1>
-
-          <div className="flex items-start gap-4">
+      <div className="mx-auto grid max-w-3xl grid-cols-1 gap-7 px-5 pt-6 min-[480px]:px-6 md:grid-cols-2">
+        <section className="pt-1 md:col-span-2" aria-labelledby="mobile-intro-title">
+          <div className="flex items-center gap-4">
             <div className="min-w-0 flex-1">
-              <h2 id="mobile-intro-title" className="mb-3 inline-block border-b-2 border-green-500 pb-2 text-2xl font-bold">
+              <p className="mb-2 text-sm font-medium text-green-800">👋 Bonjour, welcome to my world.</p>
+              <h1 id="mobile-intro-title" className="text-[clamp(1.65rem,6.5vw,2.5rem)] font-bold leading-tight tracking-tight">
                 Reda Boutayeb
-              </h2>
-              <p className="text-[15px] leading-6 text-slate-800">
-                Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 22 minutes. Twitch Partner.
-              </p>
+              </h1>
             </div>
-            <div className="relative mt-1 h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-gray-200">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-sm md:h-24 md:w-24">
               <Image
                 src="/profilepicture3.jpeg"
                 alt="Profile picture of Reda at a 5K run"
                 fill
-                sizes="96px"
+                sizes="(min-width: 768px) 96px, 80px"
                 className="object-cover"
                 priority
               />
             </div>
           </div>
-
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-xs text-gray-600">
-            <button
-              type="button"
-              onClick={() => window.dispatchEvent(new Event(COMMAND_CENTER_EVENT))}
-              className="rounded-full border border-green-200 bg-green-50 px-3 py-1 font-medium text-green-700 transition-all duration-300 hover:border-green-300 hover:bg-green-100"
-            >
-              Command Center
-            </button>
-            <span className="rounded-full border border-gray-200 bg-white px-3 py-1">Press ⌘K / Ctrl+K</span>
-          </div>
+          <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-600">
+            Master's student at University of Southern California with a focus on AI. I'm pretty good at ping-pong and I can run 5 kilometers in 22 minutes. Twitch Partner.
+          </p>
         </section>
 
-        <section className="grid gap-3" aria-label="Live profile widgets">
-          <MusicPreviewInline className="[&>div]:rounded-lg" />
-          <StravaRunningInline className="mb-0" />
-        </section>
+        <ProfileWidgetsInline className="md:col-span-2" />
 
-        <section id="about" className="scroll-mt-24 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+        <section id="about" className="scroll-mt-24 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm md:col-span-2">
           <div className="mb-3 flex items-center gap-2">
             <UserRoundIcon className="h-4 w-4 text-green-700" />
             <h2 className="text-lg font-bold">About Me</h2>
@@ -240,17 +225,17 @@ function MobilePortfolioApp() {
           </p>
         </section>
 
-        <section id="achievements" className="scroll-mt-24">
+        <section id="achievements" className="min-w-0 scroll-mt-24 md:col-span-2">
           <SectionHeading icon={SparklesIcon} title="Achievements" />
-          <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex snap-x gap-3">
+          <div tabIndex={0} role="region" aria-label="Achievement updates, scroll to explore" className="-mx-5 snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-px-5 px-5 pb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 min-[480px]:-mx-6 min-[480px]:scroll-px-6 min-[480px]:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex gap-3">
               {MOBILE_ACHIEVEMENTS.map((achievement) => (
                 <Link
                   key={achievement.href}
                   href={achievement.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`min-w-[82vw] max-w-[20rem] snap-center rounded-lg border p-4 shadow-sm ${achievement.className}`}
+                  className={`w-[min(82vw,20rem)] shrink-0 snap-start rounded-2xl border p-5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-600 ${achievement.className}`}
                 >
                   <p className="text-xs font-semibold uppercase opacity-70">
                     {achievement.label}
@@ -268,7 +253,7 @@ function MobilePortfolioApp() {
         </section>
 
         <section id="latest-video" className="scroll-mt-24">
-          <div className="overflow-hidden rounded-lg border border-green-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-2xl border border-green-200 bg-white shadow-sm">
             <div className="aspect-video bg-slate-100">
               <iframe
                 className="h-full w-full"
@@ -286,7 +271,7 @@ function MobilePortfolioApp() {
               </p>
               <Link
                 href="https://www.youtube.com/watch?v=o26RSEnEgBs"
-                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white"
+                className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-xl bg-red-600 px-4 text-sm font-semibold text-white"
               >
                 <Youtube className="h-4 w-4" />
                 Watch
@@ -299,14 +284,14 @@ function MobilePortfolioApp() {
           <SectionHeading icon={BriefcaseIcon} title="Work Experience" />
           <div className="grid gap-2">
             {MOBILE_WORK.map((job) => (
-              <article key={`${job.company}-${job.date}`} className={`rounded-lg border border-slate-200 p-3 shadow-sm ${job.className}`}>
+              <article key={`${job.company}-${job.date}`} className={`rounded-2xl border border-slate-200 p-4 shadow-sm ${job.className}`}>
                 <div className="flex items-center gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/70 bg-white">
                     <Image src={job.logo} alt={job.logoAlt} width={44} height={44} className="h-full w-full object-contain" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-base font-black">{job.company}</h3>
-                    <p className="truncate text-sm opacity-80">{job.role}</p>
+                    <h3 className="text-base font-bold leading-5">{job.company}</h3>
+                    <p className="mt-0.5 text-sm leading-5 opacity-80">{job.role}</p>
                     <p className="mt-1 text-xs opacity-60">{job.date}</p>
                   </div>
                 </div>
@@ -315,9 +300,9 @@ function MobilePortfolioApp() {
           </div>
         </section>
 
-        <section id="publications" className="scroll-mt-24">
+        <section id="publications" className="scroll-mt-24 md:col-span-2">
           <SectionHeading icon={FileTextIcon} title="Latest Publications & Articles" />
-          <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
             {MOBILE_PUBLICATIONS.map((item, index) => (
               <Link
                 key={item.href}
@@ -338,13 +323,15 @@ function MobilePortfolioApp() {
           </div>
         </section>
 
-        <SiteFooter />
+        <div className="md:col-span-2 [&_footer_a]:flex [&_footer_a]:h-11 [&_footer_a]:w-11 [&_footer_a]:items-center [&_footer_a]:justify-center [&_footer_a]:rounded-full [&_footer_a]:bg-white">
+          <SiteFooter />
+        </div>
       </div>
 
-      <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 px-3 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 backdrop-blur">
-        <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
+      <nav aria-label="Portfolio sections" className="fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+0.75rem)] z-40 mx-auto max-w-md rounded-2xl border border-slate-200/80 bg-white/95 p-1.5 shadow-[0_8px_32px_rgba(15,23,42,0.12)] backdrop-blur">
+        <div className="grid grid-cols-5 gap-1">
           {MOBILE_NAV.map(({ href, label, icon: Icon }) => (
-            <a key={href} href={href} className="flex flex-col items-center gap-1 rounded-lg px-2 py-1.5 text-[11px] font-semibold text-slate-600">
+            <a key={href} href={href} className="flex min-h-12 flex-col items-center justify-center gap-1 rounded-xl px-1 py-1.5 text-[10px] font-medium text-slate-600 transition-colors hover:bg-green-50 hover:text-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 active:bg-green-100">
               <Icon className="h-5 w-5" />
               {label}
             </a>
@@ -352,7 +339,7 @@ function MobilePortfolioApp() {
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event(COMMAND_CENTER_EVENT))}
-            className="flex flex-col items-center gap-1 rounded-lg px-2 py-1.5 text-[11px] font-semibold text-slate-600"
+            className="flex min-h-12 flex-col items-center justify-center gap-1 rounded-xl px-1 py-1.5 text-[10px] font-medium text-slate-600 transition-colors hover:bg-green-50 hover:text-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 active:bg-green-100"
           >
             <MenuIcon className="h-5 w-5" />
             More
@@ -409,7 +396,9 @@ function DesktopPortfolio() {
 
   return (
     <>
-      <MusicPreviewRail />
+      <MusicPreviewRail>
+        <CodexProfilePlacement placement="rail" />
+      </MusicPreviewRail>
       <StravaRunningRail />
       <div className="mx-auto max-w-3xl px-4 py-4" id="top">
         {/* Header */}
@@ -455,7 +444,8 @@ function DesktopPortfolio() {
           </button>
           <span className="rounded-full border border-gray-200 px-3 py-1">Press ⌘K / Ctrl+K</span>
         </div>
-        <StravaRunningInline />
+        <ProfileWidgetsInline className="mb-8" />
+        <CodexProfilePlacement placement="inline" className="mb-6" />
 
         {/* About Me */}
         <section className="mb-6" id="about">
