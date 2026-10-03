@@ -10,7 +10,8 @@ const SIDE_RAIL_QUERY = "(min-width: 1280px) and (min-height: 720px)"
 const FALLBACK_PROFILE: CodexProfile = {
   name: "Réda Boutayeb",
   handle: CODEX_PROFILE_HANDLE,
-  avatarUrl: null,
+  // Keep the public profile photo available when ChatGPT's preview cannot load.
+  avatarUrl: "/codex-profile.jpeg",
 }
 
 export default function CodexProfileCard({ className, compact = false }: { className?: string; compact?: boolean }) {
@@ -27,7 +28,7 @@ export default function CodexProfileCard({ className, compact = false }: { class
 
         const data = await response.json()
         if (controller.signal.aborted) return
-        setProfile(data)
+        setProfile({ ...data, avatarUrl: data.avatarUrl || FALLBACK_PROFILE.avatarUrl })
         setAvatarFailed(false)
       } catch {
         // The profile link and local identity remain usable if the preview is unavailable.
@@ -83,7 +84,13 @@ export default function CodexProfileCard({ className, compact = false }: { class
                 width={44}
                 height={44}
                 referrerPolicy="no-referrer"
-                onError={() => setAvatarFailed(true)}
+                onError={() => {
+                  if (profile.avatarUrl !== FALLBACK_PROFILE.avatarUrl) {
+                    setProfile((current) => ({ ...current, avatarUrl: FALLBACK_PROFILE.avatarUrl }))
+                  } else {
+                    setAvatarFailed(true)
+                  }
+                }}
                 className="h-full w-full object-cover"
               />
             ) : (
