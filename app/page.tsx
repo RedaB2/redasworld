@@ -79,7 +79,7 @@ const MOBILE_WORK = [
   {
     company: "Adobe",
     role: "Software Engineering Intern",
-    date: "Summer 2026",
+    date: "May 2026 - August 2026",
     logo: "/adobe-logo.svg",
     logoAlt: "Adobe Logo",
     className: "bg-red-50 text-red-950",
@@ -654,7 +654,7 @@ function DesktopPortfolio() {
                   (RTCDP) team, helping power the profile layer behind those
                   "wait, how did this site know me?" personalized ads.
                 </p>
-                <p className="mt-2 text-xs">Summer 2026</p>
+                <p className="mt-2 text-xs">May 2026 - August 2026</p>
               </div>
             </div>
 
