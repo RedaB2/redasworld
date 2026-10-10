@@ -1,16 +1,10 @@
-'use client'
+import ProjectVideoPreview from "./project-video-preview"
 
 export default function PeltonGPTVideo() {
   return (
-    <video
+    <ProjectVideoPreview
       src="/peltongpt.mp4"
-      className="w-full h-48 object-cover"
-      muted
-      loop
-      playsInline
-      onMouseEnter={(e) => e.currentTarget.play()}
-      onMouseLeave={(e) => e.currentTarget.pause()}
-      onEnded={(e) => e.currentTarget.pause()}
+      poster="/peltongpt-poster.jpg"
     />
   )
-} 
+}

@@ -30,6 +30,7 @@ function ProjectMedia({ project }: { project: Project }) {
       alt={media.alt}
       width={400}
       height={200}
+      sizes="(min-width: 768px) 356px, calc(100vw - 32px)"
       className={`w-full h-48 ${imageFitClass}`}
     />
   )

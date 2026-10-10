@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useMemo } from "react"
+import Image from "next/image"
+import { useEffect, useMemo } from "react"
 import {
   ExternalLink,
   MusicIcon,
@@ -68,6 +69,29 @@ export default function MusicPreviewPlayer({
     hasError,
   } = useMusicPlayer({ song })
 
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    const mediaQuery = window.matchMedia("(min-width: 1280px)")
+    const updateVisibility = () => {
+      const visible = variant === "rail" ? mediaQuery.matches : !mediaQuery.matches
+      if (visible) {
+        // Keep hidden copies from fetching audio, while retaining playback readiness.
+        if (audio.getAttribute("src") !== song.audioSrc) audio.src = song.audioSrc
+      } else {
+        audio.pause()
+      }
+    }
+
+    updateVisibility()
+    mediaQuery.addEventListener("change", updateVisibility)
+    return () => {
+      audio.pause()
+      mediaQuery.removeEventListener("change", updateVisibility)
+    }
+  }, [audioRef, song.audioSrc, variant])
+
   if (variant === "inline") {
     return (
       <div
@@ -78,11 +102,12 @@ export default function MusicPreviewPlayer({
       >
         <div className="flex items-center gap-3">
           {song.album.image ? (
-            <img
+            <Image
               src={song.album.image}
               alt={`${song.name} artwork`}
               width={44}
               height={44}
+              sizes="44px"
               className="h-11 w-11 shrink-0 rounded-lg object-cover"
             />
           ) : (
@@ -145,7 +170,7 @@ export default function MusicPreviewPlayer({
           <p role="status" className="mt-3 text-xs leading-5 text-stone-500">Preview unavailable. Listen on Spotify.</p>
         ) : null}
 
-        <audio ref={audioRef} src={song.audioSrc} preload="metadata" />
+        <audio ref={audioRef} preload="metadata" />
       </div>
     )
   }
@@ -159,9 +184,12 @@ export default function MusicPreviewPlayer({
     >
       <div className="flex items-start gap-2.5">
         {song.album.image ? (
-          <img
+          <Image
             src={song.album.image}
             alt={`${song.name} artwork`}
+            width={44}
+            height={44}
+            sizes="44px"
             className="h-11 w-11 rounded-md object-cover"
           />
         ) : (
@@ -282,7 +310,7 @@ export default function MusicPreviewPlayer({
         <p className="mt-2 text-[11px] text-muted-foreground">Preview file not available yet.</p>
       ) : null}
 
-      <audio ref={audioRef} src={song.audioSrc} preload="metadata" />
+      <audio ref={audioRef} preload="metadata" />
     </div>
   )
 }
