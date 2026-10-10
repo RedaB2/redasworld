@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 import { CODEX_PROFILE_HANDLE, CODEX_PROFILE_URL, type CodexProfile } from "@/lib/codex-profile"
 import { cn } from "@/lib/utils"
 
-const SIDE_RAIL_QUERY = "(min-width: 1280px) and (min-height: 720px)"
 const FALLBACK_PROFILE: CodexProfile = {
   name: "Réda Boutayeb",
   handle: CODEX_PROFILE_HANDLE,
@@ -14,14 +13,17 @@ const FALLBACK_PROFILE: CodexProfile = {
   avatarUrl: "/codex-profile.jpeg",
 }
 
-export default function CodexProfileCard({ className, compact = false }: { className?: string; compact?: boolean }) {
+export default function CodexProfileCard({ className, compact = false, visibilityQuery }: { className?: string; compact?: boolean; visibilityQuery?: string }) {
   const [profile, setProfile] = useState(FALLBACK_PROFILE)
   const [avatarFailed, setAvatarFailed] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController()
+    const mediaQuery = visibilityQuery ? window.matchMedia(visibilityQuery) : null
 
     async function loadProfile() {
+      if (mediaQuery && !mediaQuery.matches) return
+
       try {
         const response = await fetch("/api/codex-profile", { signal: controller.signal })
         if (!response.ok) return
@@ -37,12 +39,15 @@ export default function CodexProfileCard({ className, compact = false }: { class
 
     void loadProfile()
     const refresh = window.setInterval(() => void loadProfile(), 60 * 60 * 1000)
+    const updateVisibility = () => void loadProfile()
+    mediaQuery?.addEventListener("change", updateVisibility)
 
     return () => {
       controller.abort()
       window.clearInterval(refresh)
+      mediaQuery?.removeEventListener("change", updateVisibility)
     }
-  }, [])
+  }, [visibilityQuery])
 
   return (
     <a
@@ -115,24 +120,13 @@ export default function CodexProfileCard({ className, compact = false }: { class
 }
 
 export function CodexProfilePlacement({ placement, className }: { placement: "rail" | "inline"; className?: string }) {
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    // Smaller screens use the grouped profile tiles; short desktops keep a single inline window.
-    const mediaQuery = window.matchMedia(placement === "rail" ? SIDE_RAIL_QUERY : "(min-width: 1280px) and (max-height: 719px)")
-    const updatePlacement = () => setVisible(mediaQuery.matches)
-    updatePlacement()
-    mediaQuery.addEventListener("change", updatePlacement)
-    return () => mediaQuery.removeEventListener("change", updatePlacement)
-  }, [placement])
-
-  if (!visible) return null
-
   return placement === "rail" ? (
-    <CodexProfileCard className="mb-7 w-[220px] rotate-[1.5deg] hover:rotate-0" />
+    <div className="codex-profile-rail">
+      <CodexProfileCard className="mb-7 w-[220px] rotate-[1.5deg] hover:rotate-0" visibilityQuery="(min-width: 1280px) and (min-height: 720px)" />
+    </div>
   ) : (
-    <div className={cn("mx-auto w-full max-w-sm pb-2 pt-4", className)}>
-      <CodexProfileCard />
+    <div className={cn("codex-profile-inline mx-auto w-full max-w-sm pb-2 pt-4", className)}>
+      <CodexProfileCard visibilityQuery="(min-width: 1280px) and (max-height: 719px)" />
     </div>
   )
 }

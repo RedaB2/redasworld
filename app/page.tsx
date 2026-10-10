@@ -22,7 +22,6 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  CarouselApi,
 } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
 import { COMMAND_CENTER_EVENT } from "@/components/command-center"
@@ -31,6 +30,7 @@ import SiteFooter from "@/components/site-footer"
 import StravaRunningRail from "@/components/strava-running-rail"
 import { CodexProfilePlacement } from "@/components/codex-profile-card"
 import ProfileWidgetsInline from "@/components/profile-widgets-inline"
+import DeferredEmbed from "@/components/deferred-embed"
 
 const MOBILE_ACHIEVEMENTS = [
   {
@@ -255,7 +255,7 @@ function MobilePortfolioApp() {
         <section id="latest-video" className="scroll-mt-24">
           <div className="overflow-hidden rounded-2xl border border-green-200 bg-white shadow-sm">
             <div className="aspect-video bg-slate-100">
-              <iframe
+              <DeferredEmbed
                 className="h-full w-full"
                 src="https://www.youtube.com/embed/o26RSEnEgBs"
                 title="Latest YouTube video"
@@ -314,6 +314,7 @@ function MobilePortfolioApp() {
                   alt={item.alt}
                   width={72}
                   height={56}
+                  sizes="72px"
                   className="h-14 w-[72px] rounded-md object-cover"
                 />
                 <span className="min-w-0 flex-1 text-sm font-semibold leading-5">{item.title}</span>
@@ -364,36 +365,6 @@ function SectionHeading({ icon: Icon, title }: { icon: LucideIcon; title: string
 }
 
 function DesktopPortfolio() {
-  const [api, setApi] = useState<CarouselApi>()
-  const [carouselHeight, setCarouselHeight] = useState<number>(0)
-
-  useEffect(() => {
-    if (!api) {
-      return
-    }
-
-    const updateHeight = () => {
-      const slideNodes = api.slideNodes()
-      const currentSlide = slideNodes[api.selectedScrollSnap()]
-      if (currentSlide) {
-        setCarouselHeight(currentSlide.offsetHeight)
-      }
-    }
-
-    updateHeight()
-    api.on("select", updateHeight)
-    api.on("reInit", updateHeight)
-
-    const handleResize = () => updateHeight()
-    window.addEventListener("resize", handleResize)
-
-    return () => {
-      api.off("select", updateHeight)
-      api.off("reInit", updateHeight)
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [api])
-
   return (
     <>
       <MusicPreviewRail>
@@ -430,6 +401,8 @@ function DesktopPortfolio() {
               alt="Profile picture of Reda at a 5K run"
               width={112}
               height={112}
+              sizes="112px"
+              priority
               className="object-cover"
             />
           </div>
@@ -457,14 +430,9 @@ function DesktopPortfolio() {
 
         {/* Achievements Carousel */}
         <section className="mb-8" id="achievements">
-          <Carousel opts={{ loop: true }} setApi={setApi} className="w-full">
-            <div
-              style={{
-                height: carouselHeight > 0 ? `${carouselHeight}px` : "auto",
-                transition: "height 0.3s ease-in-out",
-                overflow: "hidden",
-              }}
-            >
+          <Carousel opts={{ loop: true }} className="w-full">
+            {/* Keep the tallest slide's space so navigation cannot move the page below. */}
+            <div className="overflow-hidden">
               <CarouselContent className="items-start">
                 {/* Achievement 1: GPT-6 Community Night */}
                 <CarouselItem>
@@ -479,7 +447,7 @@ function DesktopPortfolio() {
                         </p>
                       </div>
                       <div className="w-full overflow-hidden rounded-lg shadow-lg md:w-auto">
-                        <iframe
+                        <DeferredEmbed
                           src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7506426098730082304?collapsed=1"
                           height="770"
                           width="504"
@@ -506,7 +474,7 @@ function DesktopPortfolio() {
                         </p>
                       </div>
                       <div className="w-full overflow-hidden rounded-lg shadow-lg md:w-auto">
-                        <iframe
+                        <DeferredEmbed
                           src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7496600767122812929?collapsed=1"
                           height="634"
                           width="504"
@@ -532,7 +500,7 @@ function DesktopPortfolio() {
                         </p>
                       </div>
                       <div className="w-full overflow-hidden rounded-lg shadow-lg md:w-auto">
-                        <iframe
+                        <DeferredEmbed
                           src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7460358217160884226?collapsed=1"
                           height="634"
                           width="504"
@@ -558,7 +526,7 @@ function DesktopPortfolio() {
                         </p>
                       </div>
                       <div className="w-full overflow-hidden rounded-lg shadow-lg md:w-auto">
-                        <iframe
+                        <DeferredEmbed
                           src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7394497644485611522?compact=1"
                           height="399"
                           width="504"
@@ -584,7 +552,7 @@ function DesktopPortfolio() {
                         </p>
                       </div>
                       <div className="w-full overflow-hidden rounded-lg shadow-lg md:w-auto">
-                        <iframe
+                        <DeferredEmbed
                           src="https://www.linkedin.com/embed/feed/update/urn:li:share:7401518971881156608?collapsed=1"
                           height="634"
                           width="504"
@@ -618,7 +586,7 @@ function DesktopPortfolio() {
               </div>
             </div>
             <div className="aspect-video w-full overflow-hidden rounded-lg shadow-lg md:w-1/2">
-              <iframe
+              <DeferredEmbed
                 className="h-full w-full"
                 src="https://www.youtube.com/embed/o26RSEnEgBs"
                 title="Latest YouTube video"
@@ -760,10 +728,11 @@ function DesktopPortfolio() {
             <Link href="https://github.com/RedaB2/accelerometer-analysis-ruffs-behaviors" className="block">
               <div className="cursor-pointer rounded-lg bg-white p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <Image
-                  src="/poster_presentation.jpeg?height=200&width=400"
+                  src="/poster_presentation.jpeg"
                   alt="Ruff Behaviors Analysis"
                   width={300}
                   height={150}
+                  sizes="356px"
                   className="mb-2 h-32 w-full rounded-lg object-cover"
                 />
                 <h3 className="text-sm font-medium">Predicting Ruff Behaviors 🦃</h3>
@@ -776,6 +745,7 @@ function DesktopPortfolio() {
                   alt="Pelton turbine optimization paper thumbnail"
                   width={300}
                   height={150}
+                  sizes="356px"
                   className="mb-2 h-32 w-full rounded-lg object-cover"
                 />
                 <h3 className="text-sm font-medium">How I streamlined fluid mechanics research in Japan! 🇯🇵</h3>
@@ -788,6 +758,7 @@ function DesktopPortfolio() {
                   alt="ansithumbnail"
                   width={300}
                   height={150}
+                  sizes="356px"
                   className="mb-2 h-32 w-full rounded-lg object-cover object-top"
                 />
                 <h3 className="text-sm font-medium">Worked with ANSI on AI Standards! ✌️ </h3>
@@ -800,6 +771,7 @@ function DesktopPortfolio() {
                   alt="paperthumbnail"
                   width={300}
                   height={150}
+                  sizes="356px"
                   className="mb-2 h-32 w-full rounded-lg object-cover"
                 />
                 <h3 className="text-sm font-medium">Read my first research paper! 📚</h3>

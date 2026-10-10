@@ -28,7 +28,7 @@ export const PROJECTS: Project[] = [
     detail: "Keeps long AI conversations organized",
     media: {
       type: "image",
-      src: "/mandarin-logo.png?height=200&width=400",
+      src: "/mandarin-logo.png",
       alt: "Mandarin logo",
       fit: "contain",
       framed: true,
@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
       "Deep Learning class survived & our project outperformed published research 🤗",
     media: {
       type: "image",
-      src: "/poster_presentation.jpeg?height=200&width=400",
+      src: "/poster_presentation.jpeg",
       alt: "Ruff Behaviors Analysis",
     },
   },
@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
     detail: "40+ Testflight downloads (mostly friends & family 💀)",
     media: {
       type: "image",
-      src: "/whydate.png?height=200&width=400",
+      src: "/whydate.png",
       alt: "WhyDate app screenshot",
     },
   },
@@ -64,7 +64,7 @@ export const PROJECTS: Project[] = [
     detail: "2nd Place @ CS3733",
     media: {
       type: "image",
-      src: "/kioskdemo.png?height=200&width=400",
+      src: "/kioskdemo.png",
       alt: "Kiosk demo",
     },
   },
@@ -108,7 +108,7 @@ export const PROJECTS: Project[] = [
     detail: "Great way to learn C++ and Linux",
     media: {
       type: "image",
-      src: "/systemloggerv1.png?height=200&width=400",
+      src: "/systemloggerv1.png",
       alt: "SystemLoggerV1 screenshot",
       fit: "contain",
       framed: true,
