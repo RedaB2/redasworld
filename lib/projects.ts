@@ -13,6 +13,7 @@ export type ProjectMedia =
 
 export type Project = {
   title: string
+  category: string
   href: string
   description: string
   detail?: string
@@ -22,6 +23,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     title: "Mandarin",
+    category: "AI · Open source",
     href: "https://github.com/RedaB2/mandarin",
     description:
       "Context management tool for LLM discussion and chatting, built through open-source contributions.",
@@ -36,6 +38,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Predicting Ruff Behaviors 🦃",
+    category: "Deep learning · Research",
     href: "https://github.com/RedaB2/accelerometer-analysis-ruffs-behaviors",
     description:
       "Deep Learning class survived & our project outperformed published research 🤗",
@@ -47,6 +50,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "WhyDate?",
+    category: "iOS app",
     href: "https://github.com/RedaB2/whydateios",
     description: "Fun & original iOS dating app created for students at WPI.",
     detail: "40+ Testflight downloads (mostly friends & family 💀)",
@@ -58,6 +62,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Brigham and Women's Hospital",
+    category: "Web app · Healthcare",
     href: "https://github.com/RedaB2/BrighamWomenKiosk",
     description:
       "Web app to be used by patients & staff at Brigham and Women's Hospital. Packed with cool features like pathfinding in the hospital and flower ordering.",
@@ -70,6 +75,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "PeltonGPT",
+    category: "AI · Research tool",
     href: "https://github.com/RedaB2/PeltonGPT",
     description:
       "LLM powered research assistant for Professor Ono's research lab on fluid dynamics at Shibaura Institute of Technology.",
@@ -81,6 +87,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Shape of AI",
+    category: "Web app · Visualization",
     href: "https://redab2.github.io/final/",
     description:
       "Web app to help visualize AI models with human knowledge. Inspired by Yann LeCun's talk at the Summit 2025.",
@@ -92,6 +99,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "AlphaLasker",
+    category: "AI · Strategy game",
     href: "https://github.com/RedaB2/AlphaLasker",
     description:
       "A Lasker Morris player powered by Gemini API. Smart decision making, fast response time and fallback on hardcoded algorithm if API fails.",
@@ -103,6 +111,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "SystemLoggerV1",
+    category: "C++ · Embedded Linux",
     href: "https://github.com/RedaB2/systemloggerv1",
     description: "Lightweight C++ system logger for embedded Linux devices 💡",
     detail: "Great way to learn C++ and Linux",
