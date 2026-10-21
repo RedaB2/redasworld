@@ -12,7 +12,10 @@ export default function WorldNicheFeature() {
           <span aria-hidden="true" />
           Latest Work
         </p>
-        <h2 id="world-niche-title" className={styles.title}>World Niche</h2>
+        <div className={styles.brand}>
+          <span className={styles.logo} aria-hidden="true" />
+          <h2 id="world-niche-title" className={styles.title}>World Niche</h2>
+        </div>
         <p className={styles.tagline}>A little more world, every day.</p>
         <p className={styles.description}>
           An iPhone app I built for curious people. Pick a place on the globe or
