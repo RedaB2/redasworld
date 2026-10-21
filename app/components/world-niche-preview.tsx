@@ -5,6 +5,9 @@ import { PauseIcon, PlayIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import styles from "./world-niche-feature.module.css"
 
+const demoVideo = "/world-niche/app-demo.mp4?v=niche-build2-20261020"
+const demoPoster = "/world-niche/app-poster.jpg?v=niche-build2-20261020"
+
 export default function WorldNichePreview() {
   const stageRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -106,13 +109,13 @@ export default function WorldNichePreview() {
               id="world-niche-video"
               ref={videoRef}
               className={styles.video}
-              src="/world-niche/app-demo.mp4"
-              poster="/world-niche/app-poster.jpg"
+              src={demoVideo}
+              poster={demoPoster}
               preload="none"
               muted
               loop
               playsInline
-              aria-label="World Niche demo: explore the globe and discover local culture in Morocco and Spain"
+              aria-label="World Niche demo: explore Morocco, read about Medfouna, and browse the Atlas"
               onPlay={() => setPlaying(true)}
               onPause={() => setPlaying(false)}
               onError={() => setFailed(true)}
@@ -123,7 +126,7 @@ export default function WorldNichePreview() {
       <figcaption className={styles.caption}>
         <span>A whole world, in your hand.</span>
         {failed ? (
-          <a className={styles.playback} href="/world-niche/app-demo.mp4">
+          <a className={styles.playback} href={demoVideo}>
             Open demo video
           </a>
         ) : (
