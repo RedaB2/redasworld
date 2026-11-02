@@ -108,6 +108,8 @@
 .link:hover { background: #236041; }
 .repository { width: 2.75rem; height: 2.75rem; flex-shrink: 0; padding: 0; border-color: #b7c7b5; background: transparent; color: #254632; }
 .repository:hover { background: #e1e9db; }
+.appStore { display: inline-flex; align-items: center; min-height: 2.75rem; flex-shrink: 0; border-radius: 0.5rem; }
+.appStore:hover { opacity: 0.85; }
 .availability { margin-top: 0.75rem; color: #667364; font-size: 0.625rem; }
 .preview { min-width: 0; align-self: end; margin: 0; }
 

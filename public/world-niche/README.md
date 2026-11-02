@@ -23,3 +23,7 @@ Video has `preload="none"` and only automatically plays while visible, with
 reduced-motion and Save-Data checks. Explicit play/pause remains available.
 The demo, poster, and logo URLs use `v=niche-build2-20261020` so returning visitors
 load the refreshed assets.
+
+`download-on-the-app-store.svg` is Apple's English download badge, reused unchanged
+from https://worldniche.app/landing/assets/download-on-the-app-store.svg.
+It links to the live WorldNiche App Store listing (app ID `6824807927`).

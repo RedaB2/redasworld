@@ -1,4 +1,5 @@
 import { Github, Globe2Icon } from "lucide-react"
+import Image from "next/image"
 import WorldNichePreview from "./world-niche-preview"
 import { ProjectWindowBar } from "./project-window"
 import styles from "./world-niche-feature.module.css"
@@ -46,8 +47,22 @@ export default function WorldNicheFeature() {
           >
             <Github size={18} aria-hidden="true" />
           </a>
+          <a
+            className={styles.appStore}
+            href="https://apps.apple.com/app/id6824807927"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/world-niche/download-on-the-app-store.svg"
+              width={120}
+              height={40}
+              alt="Download on the App Store"
+            />
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
         </div>
-        <p className={styles.availability}>Built for iPhone · In development</p>
+        <p className={styles.availability}>Built for iPhone · Available on the App Store</p>
       </div>
       <WorldNichePreview />
     </section>
