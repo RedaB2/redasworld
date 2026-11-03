@@ -663,7 +663,7 @@ function DesktopPortfolio() {
                 <h3 className="text-lg font-bold">CollegeROI</h3>
                 <p className="text-sm text-sky-700">Software Engineer Intern 🧑‍💻</p>
                 <p className="mt-2 text-sm">
-                  I oversaw all backend services of the CollegeROI platform. Recently, I helped by building a new search engine that helped go through colleges with specific criteries (distance, cost, size, and more). Very fun work and it helped students out there making one of the most important decision of their lives: college. ✌️ <br />
+                  Oversaw all backend services of the CollegeROI platform. Built a new search engine that helped go through colleges with specific criteries (distance, cost, size, and more). Very fun work and it helped students out there making one of the most important decision of their lives: college. ✌️ <br />
                   <a href="https://www.yourcollegeroi.com/" className="text-blue-500 hover:underline">https://www.yourcollegeroi.com/</a>
                 </p>
                 <p className="mt-2 text-xs">February 2025 - June 2025</p>
