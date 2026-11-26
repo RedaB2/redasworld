@@ -1,0 +1,12 @@
+{
+  "name": "world-niche-duo-bake",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bake": "node bake.mjs"
+  },
+  "dependencies": {
+    "ogl": "1.0.11",
+    "playwright-core": "1.65.1"
+  }
+}

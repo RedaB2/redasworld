@@ -114,70 +114,29 @@
 .preview { min-width: 0; align-self: end; margin: 0; }
 
 .stage {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  height: 400px;
-  overflow: hidden;
-  isolation: isolate;
+  --open: 0;
+  background: #f2f6ef;
 }
 
-.orbit {
-  position: absolute;
-  top: 4rem;
-  width: 320px;
-  height: 250px;
-  border: 1px solid #dbe4d5;
-  border-radius: 50%;
-  transform: rotate(-35deg);
-  z-index: -1;
+.duoMedia {
+  display: block;
+  width: 100%;
+  max-width: 432px;
+  height: auto;
+  aspect-ratio: 864 / 800;
+  margin-inline: auto;
+  object-fit: contain;
 }
-
-.orbit::after {
-  content: "";
-  position: absolute;
-  inset: -25px 40px;
-  border: 1px solid #e1e8dc;
-  border-radius: 50%;
-  transform: rotate(65deg);
-}
-
-.handheld {
-  position: relative;
-  flex-shrink: 0;
-  width: 370px;
-  aspect-ratio: 2 / 3;
-  align-self: flex-start;
-  margin-top: 0.75rem;
-  transform: rotate(-4deg);
-  transform-origin: 50% 48%;
-}
-
-.hand { display: block; width: 100%; height: auto; }
-
-/* Registration from WorldNiche's original 1024×1536 hand/phone composition.
-   Keep the frame and real app screen on the same surface at every viewport. */
-.screen {
-  position: absolute;
-  left: 27.76%;
-  top: 3%;
-  width: 43.85%;
-  height: 61.44%;
-  overflow: hidden;
-  border-radius: 13.5% / 6.4%;
-  background: #17231f;
-}
-
-.video { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
 
 .caption {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 0 0.75rem;
-  padding: 0.375rem 0.75rem;
+  min-height: 3.5rem;
+  padding: 0.375rem 1rem;
   background: #edf2e9;
   color: #56664f;
   font-size: 0.625rem;
@@ -206,12 +165,9 @@
   .feature { grid-template-columns: 1fr; }
   .content { padding: 1.75rem 1.5rem 0.5rem; }
   .description { max-width: none; }
-  .stage { height: 365px; }
-  .handheld { width: 350px; margin-top: 0.5rem; }
-  .caption { justify-content: space-between; padding-inline: 1.25rem; }
+  .caption { padding-inline: 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .link { transition: none; }
-  .handheld { transform: none; }
 }
