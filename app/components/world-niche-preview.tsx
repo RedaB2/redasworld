@@ -4,16 +4,24 @@ import { PauseIcon, PlayIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import styles from "./world-niche-feature.module.css"
 
+const clip = "/world-niche/duo-fold.mp4"
+const cover = "/world-niche/duo-cover.webp"
+const unfolded = "/world-niche/duo-unfolded.webp"
+const frameRate = 60
 const travelMs = 2200
 const endHoldMs = 1800
 
 export default function WorldNichePreview() {
   const stageRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const requestedFrame = useRef(0)
   const position = useRef(0)
   const direction = useRef(1)
   const [allowAutoplay, setAllowAutoplay] = useState<boolean | null>(null)
   const [choice, setChoice] = useState<"auto" | "play" | "pause">("auto")
-  const playing = choice === "play" || (choice === "auto" && allowAutoplay === true)
+  const [failed, setFailed] = useState(false)
+  const [openStill, setOpenStill] = useState(false)
+  const playing = !failed && (choice === "play" || (choice === "auto" && allowAutoplay === true))
 
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -37,14 +45,34 @@ export default function WorldNichePreview() {
 
   useEffect(() => {
     const stage = stageRef.current
-    if (!stage || !playing) return
+    const video = videoRef.current
+    if (!stage || !video || failed) return
 
     let inView = false
     let frame = 0
     let previousTime = 0
     let previousScroll = 0
     let holdUntil = 0
+    let loaded = video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
     const atEnd = () => position.current === 0 || position.current === 1
+    const openness = () => position.current ** 2 * (3 - 2 * position.current)
+
+    // Seek into the middle of a sample. In particular, duration itself is
+    // past the final open frame. Let each decode finish before asking for the
+    // latest pose so fast scrolls do not leave a backlog of stale seeks.
+    const showPose = () => {
+      if (!loaded || video.seeking || !Number.isFinite(video.duration)) return
+      const count = Math.max(1, Math.round(video.duration * frameRate))
+      const target = Math.round(openness() * (count - 1))
+      if (target === requestedFrame.current) return
+      requestedFrame.current = target
+      video.currentTime = (target + 0.5) * video.duration / count
+    }
+
+    const onLoaded = () => {
+      loaded = true
+      showPose()
+    }
 
     const tick = (now: number) => {
       const delta = window.scrollY - previousScroll
@@ -57,7 +85,7 @@ export default function WorldNichePreview() {
       if (delta !== 0) {
         direction.current = Math.sign(delta)
         next += delta / Math.min(window.innerHeight * 0.32, 260)
-      } else if (now >= holdUntil) {
+      } else if (loaded && now >= holdUntil) {
         if (position.current === 0) direction.current = 1
         if (position.current === 1) direction.current = -1
         next += direction.current * elapsed / travelMs
@@ -65,11 +93,8 @@ export default function WorldNichePreview() {
       next = Math.max(0, Math.min(1, next))
       if (next !== position.current) {
         position.current = next
-        const openness = next * next * (3 - 2 * next)
-        stage.style.setProperty("--open", String(openness))
-        // Once flat, paint the entire display in one pass on every pixel density.
-        const face = next === 1 ? "flat" : openness >= 0.5 ? "inside" : "cover"
-        if (stage.dataset.face !== face) stage.dataset.face = face
+        stage.style.setProperty("--open", String(openness()))
+        showPose()
         if (atEnd()) holdUntil = now + endHoldMs
       }
       if (delta !== 0) holdUntil = now + (atEnd() ? endHoldMs : 500)
@@ -78,25 +103,33 @@ export default function WorldNichePreview() {
 
     const sync = () => {
       cancelAnimationFrame(frame)
-      if (inView && !document.hidden) {
-        previousScroll = window.scrollY
-        previousTime = performance.now()
-        holdUntil = previousTime + (atEnd() ? endHoldMs : 0)
-        frame = requestAnimationFrame(tick)
+      if (!playing || !inView || document.hidden) return
+      if (!video.hasAttribute("src")) {
+        video.preload = "auto"
+        video.src = clip
       }
+      previousScroll = window.scrollY
+      previousTime = performance.now()
+      holdUntil = previousTime + (atEnd() ? endHoldMs : 0)
+      frame = requestAnimationFrame(tick)
     }
+
     const observer = new IntersectionObserver(([entry]) => {
       inView = entry.intersectionRatio >= 0.12
       sync()
     }, { threshold: 0.12 })
     observer.observe(stage)
+    video.addEventListener("loadeddata", onLoaded)
+    video.addEventListener("seeked", onLoaded)
     document.addEventListener("visibilitychange", sync)
     return () => {
       observer.disconnect()
+      video.removeEventListener("loadeddata", onLoaded)
+      video.removeEventListener("seeked", onLoaded)
       document.removeEventListener("visibilitychange", sync)
       cancelAnimationFrame(frame)
     }
-  }, [playing])
+  }, [playing, failed])
 
   return (
     <figure className={styles.preview}>
@@ -105,23 +138,39 @@ export default function WorldNichePreview() {
         ref={stageRef}
         className={styles.stage}
         role="img"
-        aria-label="A hand holds an iPhone Duo. It unfolds to show World Niche’s Discover globe centered on Morocco."
+        aria-label={failed
+          ? `A hand holds ${openStill ? "an unfolded" : "a folded"} iPhone Duo showing World Niche’s Discover globe centered on Morocco.`
+          : "A hand holds an iPhone Duo. It unfolds to show World Niche’s Discover globe centered on Morocco."}
       >
-        <div className={styles.orbit} />
-        <div className={styles.handheld}>
-          <div className={styles.device}>
-            <div className={styles.display} />
-            <div className={styles.leaf}>
-              <div className={styles.inside} />
-              <div className={styles.cover} />
-              <div className={styles.edge} />
-            </div>
-          </div>
-        </div>
+        {failed ? (
+          <img src={openStill ? unfolded : cover} width={864} height={800} className={styles.duoMedia} alt="" />
+        ) : (
+          <video
+            ref={videoRef}
+            className={styles.duoMedia}
+            width={864}
+            height={800}
+            poster={cover}
+            preload="none"
+            playsInline
+            muted
+            aria-hidden="true"
+            onError={() => setFailed(true)}
+          />
+        )}
       </div>
       <figcaption className={styles.caption}>
         <span>iPhone Duo{playing && " · Scroll to unfold"}</span>
-        {allowAutoplay !== null && (
+        {failed ? (
+          <button
+            className={styles.playback}
+            type="button"
+            aria-controls="world-niche-duo"
+            onClick={() => setOpenStill(open => !open)}
+          >
+            View {openStill ? "folded" : "unfolded"} Duo
+          </button>
+        ) : allowAutoplay !== null && (
           <button
             className={styles.playback}
             type="button"
