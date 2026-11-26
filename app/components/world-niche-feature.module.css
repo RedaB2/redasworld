@@ -118,7 +118,8 @@
   display: flex;
   justify-content: center;
   --open: 0;
-  height: 375px;
+  aspect-ratio: 1.08;
+  max-height: 355px;
   overflow: hidden;
   isolation: isolate;
 }
@@ -144,135 +145,103 @@
 }
 
 .handheld {
+  /* The silhouette widens to the left only after the leaf passes edge-on. */
+  --spread: max(0, cos(calc(180deg * (1 - var(--open)))));
+  --shade: sin(calc(180deg * var(--open)));
   position: relative;
-  width: min(100%, 370px);
-  aspect-ratio: 966 / 1210;
+  width: min(calc(100% - 12px), 390px);
+  aspect-ratio: 1264 / 1225;
   align-self: flex-start;
-  margin-top: 2.5rem;
-  transform: translateX(calc(-21% + 21% * var(--open))) rotate(-3deg);
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+  transform: translateX(calc(-13% + 16% * var(--spread))) rotate(calc(-3deg + 3deg * var(--open)));
 }
 
-/* All the layers share the hinge and screen bounds of the original Duo frame. */
-.grip {
+.handheld::before, .handheld::after {
+  content: "";
   position: absolute;
-  inset: 0 0 0 49.8047%;
-  background: url("/world-niche/duo-grip.webp") center / 100% 100% no-repeat;
+  inset: 0;
+  background: url("/world-niche/duo-hand.webp") center / 100% 100% no-repeat;
 }
+
+/* The fingers sit behind the handset and the thumb rests over its right rim. */
+.handheld::after { clip-path: inset(0 0 0 76%); }
 
 .device {
   position: absolute;
-  left: 6.0547%;
-  width: 87.5%;
-  aspect-ratio: 845 / 610;
+  width: 77.6899%;
+  aspect-ratio: 982 / 700;
 }
 
-.leaf, .fixedPanel {
+.display, .inside {
   position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
+  inset: 0;
+  background: url("/world-niche/duo-open.webp") left center / 100% 100% no-repeat;
 }
 
-.fixedPanel { right: 0; }
+.display {
+  --corner: calc(5% * max(0, 1 - 5 * var(--open)));
+  clip-path: inset(0 0 0 calc(50% - 0.4px) round var(--corner) 0 0 var(--corner));
+  opacity: clamp(0, (var(--open) - 0.06) * 11, 1);
+}
 
 .leaf {
-  left: 0;
+  position: absolute;
+  inset: 0 50% 0 0;
   transform-origin: right center;
   transform-style: preserve-3d;
-  transform: perspective(700px) rotateY(calc(180deg - 180deg * var(--open)));
+  transform: perspective(680px) rotateY(calc(180deg * (1 - var(--open))));
 }
 
 .inside, .cover {
-  position: absolute;
-  inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
 .inside {
-  background: url("/world-niche/duo-leaf.webp") center / 100% 100% no-repeat;
-  transform: translateZ(0.1px);
+  background-size: 200% 100%;
   visibility: hidden;
 }
 
 .cover {
-  transform: rotateY(180deg) translateZ(2px);
-}
-
-.stage[data-inner-face] .inside { visibility: visible; }
-.stage[data-inner-face] .cover { visibility: hidden; }
-
-.cover::before {
-  content: "";
   position: absolute;
   inset: 0;
-  background: url("/world-niche/duo-leaf.webp") center / 100% 100% no-repeat;
-  transform: scaleX(-1);
+  background: url("/world-niche/duo-closed.webp") center / 100% 100% no-repeat;
+  transform: rotateY(180deg) translateZ(1.2px);
 }
 
-.coverScreen, .innerScreen {
-  position: absolute;
-  top: 3.65%;
-  bottom: 3.35%;
-}
+.stage[data-face="inside"] .inside { visibility: visible; }
+.stage[data-face="inside"] .cover { visibility: hidden; }
+.stage[data-face="flat"] .display { clip-path: none; }
+.stage[data-face="flat"] .leaf { visibility: hidden; }
 
-.coverScreen {
-  left: 3%;
-  right: 4.9%;
-  border-radius: 9% / 7%;
-  background: #f6f4ec url("/world-niche/discover-cover.webp") center / contain no-repeat;
-}
-
-.coverScreen::after {
+.inside::after, .display::after {
   content: "";
   position: absolute;
-  top: 2%;
-  left: 44%;
-  width: 12%;
-  height: 2.3%;
-  background: #171a18;
-  border-radius: 1rem;
+  opacity: var(--shade);
 }
 
-.innerScreen {
-  left: 5%;
-  right: 0;
+.inside::after {
+  inset: 2.6% 0 2.6% 4%;
   border-radius: 10% 0 0 10% / 7% 0 0 7%;
-  background: url("/world-niche/discover-duo.webp") left center / 200% 100% no-repeat;
+  background: linear-gradient(95deg, transparent, #1b221921);
 }
 
-.fixedPanel .innerScreen {
-  left: 0;
-  right: 5%;
-  background-position: right center;
+.display::after {
+  inset: 2.6% 2% 2.6% 50%;
   border-radius: 0 10% 10% 0 / 0 7% 7% 0;
+  background: linear-gradient(90deg, #1b221935, transparent 82%);
 }
 
-.inside .innerScreen::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(90deg, transparent 60%, #17251b33);
-  opacity: calc(0.2 + 0.8 * (1 - var(--open)));
-}
-
-.fixedPanel .innerScreen::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #18231b80, transparent 85%);
-  opacity: calc(1 - max(var(--open), 1 - var(--open)));
-}
+.stage[data-face="flat"] .display::after { display: none; }
 
 .edge {
   position: absolute;
-  left: 0.65%;
+  left: 0.6%;
   top: 11%;
   bottom: 11%;
-  width: 2px;
-  background: linear-gradient(90deg, #272a29, #929795, #373a39);
+  width: 1.5px;
+  opacity: clamp(0, (var(--shade) - 0.92) * 12.5, 1);
+  background: linear-gradient(90deg, #424744, #a0a49f, #393d39);
   transform-origin: left center;
   transform: rotateY(90deg);
 }
@@ -314,8 +283,6 @@
   .feature { grid-template-columns: 1fr; }
   .content { padding: 1.75rem 1.5rem 0.5rem; }
   .description { max-width: none; }
-  .stage { height: clamp(290px, 88vw, 365px); }
-  .handheld { margin-top: 1.75rem; }
   .caption { padding-inline: 1.25rem; }
 }
 

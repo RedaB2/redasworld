@@ -67,8 +67,9 @@ export default function WorldNichePreview() {
         position.current = next
         const openness = next * next * (3 - 2 * next)
         stage.style.setProperty("--open", String(openness))
-        // Explicitly cull the far face on WebKit's nested 3D layers.
-        stage.toggleAttribute("data-inner-face", openness >= 0.5)
+        // Once flat, paint the entire display in one pass on every pixel density.
+        const face = next === 1 ? "flat" : openness >= 0.5 ? "inside" : "cover"
+        if (stage.dataset.face !== face) stage.dataset.face = face
         if (atEnd()) holdUntil = now + endHoldMs
       }
       if (delta !== 0) holdUntil = now + (atEnd() ? endHoldMs : 500)
@@ -108,18 +109,11 @@ export default function WorldNichePreview() {
       >
         <div className={styles.orbit} />
         <div className={styles.handheld}>
-          <div className={styles.grip} />
           <div className={styles.device}>
-            <div className={styles.fixedPanel}>
-              <div className={styles.innerScreen} />
-            </div>
+            <div className={styles.display} />
             <div className={styles.leaf}>
-              <div className={styles.inside}>
-                <div className={styles.innerScreen} />
-              </div>
-              <div className={styles.cover}>
-                <div className={styles.coverScreen} />
-              </div>
+              <div className={styles.inside} />
+              <div className={styles.cover} />
               <div className={styles.edge} />
             </div>
           </div>
